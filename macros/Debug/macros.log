@@ -1,0 +1,32 @@
+﻿  treeIO.cpp
+  sortReconData.cpp
+  selectPosIonElec.cpp
+  ReadWriteTree.cpp
+  plotTimeSums.cpp
+c:\root_v5.34.36\include\tpad.h(326): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
+c:\root_v5.34.36\include\tpad.h(327): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
+c:\root_v5.34.36\include\tpad.h(328): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
+c:\root_v5.34.36\include\tpad.h(384): warning C4800: 'TVirtualViewer3D *const ': forcing value to bool 'true' or 'false' (performance warning)
+  plotTimeSpectraEvents.cpp
+  plotTimeSpectraDS.cpp
+  plotTimeSpectra.cpp
+c:\users\tamarab\documents\github\liveimageandtimespectra\macros\plottimespectra.cpp(33): warning C4101: 'timeDouble': unreferenced local variable
+  loadFromTreeExistingDataset.cpp
+  identifyAndTime.cpp
+  histogramXYPositions.cpp
+  histogramElectronLayers.cpp
+  histogramDifferenceElecLayers.cpp
+  firstCut.cpp
+  differenceOfLayers.cpp
+  convertLayerPosition.cpp
+  convertCartesian.cpp
+  constructEvents.cpp
+  checkTimeSums.cpp
+  calculateTimeSums.cpp
+  Generating Code...
+c:\users\tamarab\documents\github\liveimageandtimespectra\macros\readwritetree.cpp(108): warning C4172: returning address of local variable or temporary: treeDS
+  Compiling...
+  calculatePitchProp.cpp
+  checkReconstructable.cpp
+  Generating Code...
+  macros.vcxproj -> C:\Users\TamaraB\Documents\GitHub\LiveImageandTimeSpectra\Debug\macros.lib
