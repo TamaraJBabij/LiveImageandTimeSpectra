@@ -103,5 +103,8 @@ public:
 	Particle electron;
 	Particle positron;
 	Particle ion;
+	//For detector images
+	Particle positive;
+	Particle negative;
 };
 #endif

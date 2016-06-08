@@ -27,21 +27,8 @@ void convertCartesianPosition(DataSet* reconData) {
 					p.x = e->V + e->W;
 					p.y = (1 / sqrt(3))*(e->W - e->V);
 				}
-				switch (e->reltimediff.particle) {
-				case positron:
-					g->positron = p;
-					//cout << " - positron" << " x: " << p.x << " y: " << p.y << endl;
-					break;
-					//case electron:
-						//g->electron = p;
-						//cout << " - electron" << " x: " << p.x << " y: " << p.y << endl;
-						//break;
-				case ion1:
-					g->ion = p;
-					//cout << " - ion" << " x: " << p.x << " y: " << p.y << endl;
-					break;
+					g->positive = p;
 				}
-			}
 			else if (e->mcp->detector == neg) {
 				Particle p;
 				p.t = e->reltimediff.timediff;
@@ -84,7 +71,9 @@ void convertCartesianPosition(DataSet* reconData) {
 				}
 				p.x = p.x / count;
 				p.y = p.y / count;
-				g->electron = p;
+				//cout << "x " << p.x << endl;
+				//cout << "y " << p.y << endl;
+				g->negative = p;
 			}
 		}
 	}

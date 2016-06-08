@@ -20,11 +20,10 @@ DataSet* sortReconData(DataSet* data) {
 	for (Group* g : *data) {
 		//int check = g->ElecCheck;
 		//cout << check << endl;
-		if (g->TripleCoinc == true) {
 			 bool recon = true;
 			 //cout << " maybe recon group" << endl;
 			 for (Event* e : g->events) {
-				 if (e->reconstructInfo == notReconstructable || e->reconstructInfo == ionNoPosition) {
+				 if (e->reconstructInfo == notReconstructable) {
 					 recon = false;
 					 //cout << " not recon group" << endl;
 					 break;
@@ -37,7 +36,6 @@ DataSet* sortReconData(DataSet* data) {
 				 reconData->addGroup(g);
 				 //cout << "recon group" << endl;
 			 }
-		}
 	}
 	return reconData;
 }

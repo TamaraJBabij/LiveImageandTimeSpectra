@@ -30,6 +30,13 @@
 #include <TLegend.h>
 using namespace std;
 
+//this will eventually take data from the DAQ software Dan Murtagh wrote
+//During testing the program will take in folders like the main analysis software
+//This programs purpose is to provide live updating images of the detectors as well as time spectra
+//sould be two options 1. Find TS fits and save to tree for later use in program and/or 2. create one or two detector images and time spectra
+//this program will not select out for particles and will use all reconstructable hits to produce an image
+//
+
 int main(int argc, char* argv[]) {
 	//Initial function to set up the debug environment
 	int setUpDebugEnvironment();
@@ -198,10 +205,10 @@ int main(int argc, char* argv[]) {
 	//takes timedifferences of MCP hits for each event within a group
 	//identifies particle and stores in MCPTDiff double
 	//stored is the particleID and timedifference relative to positron
-	identifyAndTime(data);
+	//identifyAndTime(data);
 
 	// want to index number of particles and bool triple for each each group
-	selectPosIonElec(data);
+	//selectPosIonElec(data);
 
 	//check each particle hit has enough information to reconstruct X Y position
 	//not needed for ion
@@ -236,48 +243,48 @@ int main(int argc, char* argv[]) {
 	//works better with more runs and a contour plot, 
 	//since plotting individual runs intensity is 1, need to implement contours
 	//XYpositions.positronDET->Draw("colz");
-	XYpositions.positronDET->Draw("cont0");
+	XYpositions.positronDET->Draw("colz");
 
 	TCanvas c4("c4", "Fourth Canvas", w, h);
-	XYpositions.electronDET->Draw("cont0");
+	XYpositions.electronDET->Draw("colz");
 
-	TCanvas c5("c5", "Fifth Canvas", w, h);
-	XYpositions.ionDET->Draw("cont0");
+	//TCanvas c5("c5", "Fifth Canvas", w, h);
+	//XYpositions.ionDET->Draw("cont0");
 
-	HistogramElecLayers UVWlayers = histogramElectronLayers(reconData);
+	//HistogramElecLayers UVWlayers = histogramElectronLayers(reconData);
 
-	TCanvas c6("c6", "Sixth Canvas", w, h);
-	UVWlayers.UVlayers->SetMarkerColor(kBlue);
-	UVWlayers.UVlayers->SetLineColor(kBlue);
-	UVWlayers.UVlayers->Draw("hist");
-	UVWlayers.UWlayers->SetMarkerColor(kRed);
-	UVWlayers.UWlayers->SetLineColor(kRed);
-	UVWlayers.UWlayers->Draw("SameHist");
-	UVWlayers.VWlayers->SetLineColor(kBlack);
-	UVWlayers.VWlayers->Draw("SameHist");
-	c6.SetTitle("UVW Layers Combined; x (mm); y (mm)");
-	TLegend* leg = new TLegend(0.1,0.7,0.3,0.9, "Layers");
-	leg->Draw();
-	leg->AddEntry(UVWlayers.UVlayers, "UV layer");
-	leg->AddEntry(UVWlayers.UWlayers, "UW layer");
-	leg->AddEntry(UVWlayers.VWlayers, "WV layer");
-	c6.Update();
+	//TCanvas c6("c6", "Sixth Canvas", w, h);
+	//UVWlayers.UVlayers->SetMarkerColor(kBlue);
+	//UVWlayers.UVlayers->SetLineColor(kBlue);
+	//UVWlayers.UVlayers->Draw("hist");
+	//UVWlayers.UWlayers->SetMarkerColor(kRed);
+	//UVWlayers.UWlayers->SetLineColor(kRed);
+	//UVWlayers.UWlayers->Draw("SameHist");
+	//UVWlayers.VWlayers->SetLineColor(kBlack);
+	//UVWlayers.VWlayers->Draw("SameHist");
+	//c6.SetTitle("UVW Layers Combined; x (mm); y (mm)");
+	//TLegend* leg = new TLegend(0.1,0.7,0.3,0.9, "Layers");
+	//leg->Draw();
+	//leg->AddEntry(UVWlayers.UVlayers, "UV layer");
+	//leg->AddEntry(UVWlayers.UWlayers, "UW layer");
+	//leg->AddEntry(UVWlayers.VWlayers, "WV layer");
+	//c6.Update();
 
-	differenceOfLayers(reconData);
+	//differenceOfLayers(reconData);
 
-	HistogramDIFF UVWdifferences = histogramElecLayerDiff(reconData);
-	TCanvas c7("c7", "Layer Differences");
-	c7.Divide(2, 3);
-	c7.cd(1);
-	UVWdifferences.ydiffuv_uw->Draw();
-	c7.cd(2);
-	UVWdifferences.ydiffuv_vw->Draw();
-	c7.cd(3);
-	UVWdifferences.xdiffuv_vw->Draw();
-	c7.cd(4);
-	UVWdifferences.ydiffuw_vw->Draw();
-	c7.cd(5);
-	UVWdifferences.xdiffuw_vw->Draw();
+	//HistogramDIFF UVWdifferences = histogramElecLayerDiff(reconData);
+	//TCanvas c7("c7", "Layer Differences");
+	//c7.Divide(2, 3);
+	//c7.cd(1);
+	//UVWdifferences.ydiffuv_uw->Draw();
+	//c7.cd(2);
+	//UVWdifferences.ydiffuv_vw->Draw();
+	//c7.cd(3);
+	//UVWdifferences.xdiffuv_vw->Draw();
+	//c7.cd(4);
+	//UVWdifferences.ydiffuw_vw->Draw();
+	//c7.cd(5);
+	//UVWdifferences.xdiffuw_vw->Draw();
 
 	rootapp->Run();
 	

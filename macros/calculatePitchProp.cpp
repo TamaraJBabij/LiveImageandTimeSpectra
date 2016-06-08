@@ -43,18 +43,18 @@ PitchPropSet calculatePitchProp(FitSet fits) {
 	//pitch prop for negative detector, u layer
 	FitData unegfit = fits.getFit(u, negative);
 	//unegpitch = LENGTH_eU / unegfit.peak;
-	//unegpitch = LENGTH_eU / 124.14;
-	unegpitch = 1 / 1.5;
+	unegpitch = LENGTH_eU / 124.14;
+	//unegpitch = 1 / 1.5;
 	//pitch prop for negative detector, v layer
 	FitData vnegfit = fits.getFit(v, negative);
 	//vnegpitch = LENGTH_eV / vnegfit.peak;
-	//vnegpitch = LENGTH_eV / 124.89;
-	vnegpitch = 1 / 1.6;
+	vnegpitch = LENGTH_eV / 124.89;
+	//vnegpitch = 1 / 1.6;
 	//pitch prop for negative detector, w layer
 	FitData wnegfit = fits.getFit(w, negative);
 	//wnegpitch = LENGTH_eW / wnegfit.peak;
-	//wnegpitch = LENGTH_eW / 117.39;
-	wnegpitch = 1 / 1.7;
+	wnegpitch = LENGTH_eW / 117.39;
+	//wnegpitch = 1 / 1.7;
 	Pitches.setPitchProp(positive, upospitch, vpospitch, wpospitch);
 	Pitches.setPitchProp(negative, unegpitch, vnegpitch, wnegpitch);
 	return Pitches;

@@ -8,5 +8,4 @@
 struct HistogramXY {
 	TH2D* positronDET;
 	TH2D* electronDET;
-	TH2D* ionDET;
 };

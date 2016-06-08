@@ -9,7 +9,7 @@
 #include "Constants.h"
 #include "MCPTDiff.h"
 
-//ions dont need position info
+//for quick image only want particles that are reconstructable, don't care about identity of particle
 //any pos or elec need to have atleast two layer hits
 //if true assign a bool to event
 
@@ -22,31 +22,6 @@ void checkReconstructable(DataSet* data) {
 			int uCheck = 0;
 			int vCheck = 0;
 			int wCheck = 0;
-			if (e->reltimediff.particle == ion1) {
-				//dont need any position info, just need mco hit therefore is reconstructable
-				int uSize = e->uPairs.size();
-				int vSize = e->vPairs.size();
-				int wSize = e->wPairs.size();
-				//As vector of layerhits (where layehits contains u1, u2)
-				//want vector length of 1!!
-				if (uSize == 1) {
-					//adds to ucheck +1
-					uCheck = 1;
-				}
-				if (vSize == 1) {
-					vCheck = 1;
-				}
-				if (wSize == 1) {
-					wCheck = 1;
-				}
-				if (uCheck + vCheck + wCheck >= 2) {
-					e->reconstructInfo = reconstructable;
-				}
-				else {
-					e->reconstructInfo = ionNoPosition;
-				}
-			}
-			if (e->reltimediff.particle == positron) {
 				//need to know somehow check that there is atleast two LayerHits 
 				//(and in each layer hit there is no more than 1 set)
 				//is switch best way of doing this?
@@ -72,31 +47,11 @@ void checkReconstructable(DataSet* data) {
 				}
 				if (uCheck + vCheck + wCheck >= 2) {
 					e->reconstructInfo = reconstructable;
+					//cout << e->reconstructInfo << endl;
 				}
 				else {
 					e->reconstructInfo = notReconstructable;
-				}
-			}
-				if (e->reltimediff.particle == electron) {
-					int uSize = e->uPairs.size();
-					int vSize = e->vPairs.size();
-					int wSize = e->wPairs.size();
-					if (uSize == 1) {
-						//adds to ucheck +1
-						uCheck = 1;
-					}
-					if (vSize == 1) {
-						vCheck = 1;
-					}
-					if (wSize == 1) {
-						wCheck = 1;
-					}
-					if (uCheck + vCheck + wCheck >= 2) {
-						e->reconstructInfo = reconstructable;
-					}
-					else {
-						e->reconstructInfo = notReconstructable;
-					}
+					//cout << e->reconstructInfo << endl;
 				}
 			}
 	}

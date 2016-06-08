@@ -14,14 +14,23 @@ HistogramXY histogramXYPositions(DataSet *reconData) {
 	//sort for particle type using 
 	//Particle is subset of event and contains time and x, y
 	HistogramXY XYpositions;
-	XYpositions.positronDET = new TH2D("positronDET", "Positrons", 2000, -60, 60, 2000, -60, 60);
-	XYpositions.electronDET = new TH2D("electronDET", "Electrons", 2000, -60, 60, 2000, -60, 60);
-	XYpositions.ionDET = new TH2D("ionDET", "Ions", 2000, -60, 60, 2000, -60, 60);
+	XYpositions.positronDET = new TH2D("positronDET", "Positrons", 400, -60, 60, 400, -60, 60);
+	XYpositions.electronDET = new TH2D("electronDET", "Electrons", 400, -60, 60, 400, -60, 60);
 
 	for (Group* g : *reconData) {
-		XYpositions.positronDET->Fill(g->positron.x, g->positron.y);
-		XYpositions.electronDET->Fill(g->electron.x, g->electron.y);
-		XYpositions.ionDET->Fill(g->ion.x, g->ion.y);
+		//cout << "x " << g->positive.x << endl;
+		if (g->positive.x > 0.08 || g->positive.x < -0.01) {
+			if (g->positive.y > 0.08 || g->positive.y < -0.08) {
+				XYpositions.positronDET->Fill(g->positive.x, g->positive.y);
+			}
+		}
+		if (g->negative.x > 0.08 || g->negative.x < -0.01) {
+			if (g->negative.y > 0.08 || g->negative.y < -0.08) {
+				XYpositions.electronDET->Fill(g->negative.x, g->negative.y);
+			}
+		}
+		//XYpositions.positronDET->Fill(g->positive.x, g->positive.y);
+		//XYpositions.electronDET->Fill(g->negative.x, g->negative.y);
 	}
 	
 	return XYpositions;
