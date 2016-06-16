@@ -42,42 +42,21 @@ int main(int argc, char* argv[]) {
 	int setUpDebugEnvironment();
 	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
-	TFile* rawFile = TFile::Open("../01102015.root");
+	TFile* rawFile = TFile::Open("../ReMi20166161454/Tree145440.root");
 	TTree* rawTree = (TTree*)rawFile->Get("T");
 	DataSet* data = loadFromTree(rawTree);
 	rawFile->Close();
 	//TTree* tree = readWriteTree(rawTree);
 
-	TFile* raw2File = TFile::Open("../02102015.root");
+	TFile* raw2File = TFile::Open("../ReMi20166161454/Tree145440_1.root");
 	TTree* raw2Tree = (TTree*)raw2File->Get("T");
 	loadFromTreeDataSet(raw2Tree, data);
 	raw2File->Close();
 
-	TFile* raw3File = TFile::Open("../03102015.root");
+	TFile* raw3File = TFile::Open("../ReMi20166161454/Tree145440_2.root");
 	TTree* raw3Tree = (TTree*)raw3File->Get("T");
 	loadFromTreeDataSet(raw3Tree, data);
 	raw3File->Close();
-
-	TFile* raw4File = TFile::Open("../06102015.root");
-	TTree* raw4Tree = (TTree*)raw4File->Get("T");
-	loadFromTreeDataSet(raw4Tree, data);
-	raw4File->Close();
-
-	TFile* raw5File = TFile::Open("../07102015.root");
-	TTree* raw5Tree = (TTree*)raw5File->Get("T");
-	loadFromTreeDataSet(raw5Tree, data);
-	raw5File->Close();
-
-	TFile* raw6File = TFile::Open("../08102015.root");
-	TTree* raw6Tree = (TTree*)raw6File->Get("T");
-	loadFromTreeDataSet(raw6Tree, data);
-	raw6File->Close();
-
-	TFile* raw7File = TFile::Open("../09102015.root");
-	TTree* raw7Tree = (TTree*)raw7File->Get("T");
-	loadFromTreeDataSet(raw7Tree, data);
-	//DataSet* data = loadFromTree(raw7Tree);
-	raw7File->Close();
 
 	//tree->Draw("Time");
 	HistogramPair hists = plotTimeSpectraDS(data);
@@ -162,38 +141,38 @@ int main(int argc, char* argv[]) {
 	treeTS.Fill();
 	fits.setFit(w, positive, peak, error, sigma);
 
-	c2.cd(4);
-	timesums.layer_uneg->Draw();
-	timesums.layer_uneg->Fit("gaus");
-	TF1 *fitun = timesums.layer_uneg->GetFunction("gaus");
-	layer = CFG_LAYER_UNEG;
-	peak = fitun->GetParameter(1);
-	sigma = fitun->GetParameter(2);
-	error = fitun->GetParError(1);
-	treeTS.Fill();
-	fits.setFit(u, negative, peak, error, sigma);
+	//c2.cd(4);
+	//timesums.layer_uneg->Draw();
+	//timesums.layer_uneg->Fit("gaus");
+	//TF1 *fitun = timesums.layer_uneg->GetFunction("gaus");
+	//layer = CFG_LAYER_UNEG;
+	//peak = fitun->GetParameter(1);
+	//sigma = fitun->GetParameter(2);
+	//error = fitun->GetParError(1);
+	//treeTS.Fill();
+	//fits.setFit(u, negative, peak, error, sigma);
 
-	c2.cd(5);
-	timesums.layer_vneg->Draw();
-	timesums.layer_vneg->Fit("gaus");
-	TF1 *fitvn = timesums.layer_vneg->GetFunction("gaus");
-	layer = CFG_LAYER_VNEG;
-	peak = fitvn->GetParameter(1);
-	sigma = fitvn->GetParameter(2);
-	error = fitvn->GetParError(1);
-	treeTS.Fill();
-	fits.setFit(v, negative, peak, error, sigma);
+	//c2.cd(5);
+	//timesums.layer_vneg->Draw();
+	//timesums.layer_vneg->Fit("gaus");
+	//TF1 *fitvn = timesums.layer_vneg->GetFunction("gaus");
+	//layer = CFG_LAYER_VNEG;
+	//peak = fitvn->GetParameter(1);
+	//sigma = fitvn->GetParameter(2);
+	//error = fitvn->GetParError(1);
+	//treeTS.Fill();
+	//fits.setFit(v, negative, peak, error, sigma);
 
-	c2.cd(6); 
-	timesums.layer_wneg->Draw();
-	timesums.layer_wneg->Fit("gaus");
-	TF1 *fitwn = timesums.layer_wneg->GetFunction("gaus");
-	layer = CFG_LAYER_WNEG;
-	peak = fitwn->GetParameter(1);
-	sigma = fitwn->GetParameter(2);
-	error = fitwn->GetParError(1);
-	treeTS.Fill();
-	fits.setFit(w, negative, peak, error, sigma);
+	//c2.cd(6); 
+	//timesums.layer_wneg->Draw();
+	//timesums.layer_wneg->Fit("gaus");
+	//TF1 *fitwn = timesums.layer_wneg->GetFunction("gaus");
+	//layer = CFG_LAYER_WNEG;
+	//peak = fitwn->GetParameter(1);
+	//sigma = fitwn->GetParameter(2);
+	//error = fitwn->GetParError(1);
+	//treeTS.Fill();
+	//fits.setFit(w, negative, peak, error, sigma);
 
 	//Want to write timesum information to tree for accessing later in program, also to save to csv such that
 	//ts info for all runs can be accessed at later dates without rerunning code

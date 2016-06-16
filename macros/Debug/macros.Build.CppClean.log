@@ -1,6 +1,5 @@
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\macros.pdb
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\macros.idb
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\calculatetimesums.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\checktimesums.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\constructevents.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\convertcartesian.obj
@@ -17,11 +16,13 @@ c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\plottimes
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\plottimespectraevents.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\plottimesums.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\readwritetree.obj
+c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\scanfiles.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\selectposionelec.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\sortrecondata.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\treeio.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\checkreconstructable.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\calculatepitchprop.obj
+c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\calculatetimesums.obj
 c:\users\tamarab\documents\github\liveimageandtimespectra\debug\macros.lib
 c:\users\tamarab\documents\github\liveimageandtimespectra\debug\macros.pdb
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\debug\macros.tlog\cl.command.1.tlog

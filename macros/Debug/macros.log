@@ -1,6 +1,7 @@
 ﻿  treeIO.cpp
   sortReconData.cpp
   selectPosIonElec.cpp
+  scanFiles.cpp
   ReadWriteTree.cpp
   plotTimeSums.cpp
 c:\root_v5.34.36\include\tpad.h(326): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
@@ -22,11 +23,12 @@ c:\users\tamarab\documents\github\liveimageandtimespectra\macros\plottimespectra
   convertCartesian.cpp
   constructEvents.cpp
   checkTimeSums.cpp
-  calculateTimeSums.cpp
   Generating Code...
 c:\users\tamarab\documents\github\liveimageandtimespectra\macros\readwritetree.cpp(108): warning C4172: returning address of local variable or temporary: treeDS
   Compiling...
+  calculateTimeSums.cpp
   calculatePitchProp.cpp
   checkReconstructable.cpp
   Generating Code...
+scanFiles.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
   macros.vcxproj -> C:\Users\TamaraB\Documents\GitHub\LiveImageandTimeSpectra\Debug\macros.lib

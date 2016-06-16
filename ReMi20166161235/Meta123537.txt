@@ -1,0 +1,14 @@
+Date : 16-5-2016
+Start Time : 12:35:37
+Target : Argon
+Magnetic Field : 10G
+Gas Pressure : 1e-5
+Incident Beam Energy : 190eV
+
+TDC Control Registers
+CR0 : 0001000000000000
+CR1 : 0000001011110000
+CR2 : 1111101000000110
+CR3 : 0000000000000000
+CR4 : 0000000000000000
+CR5 : 0000000000000000
