@@ -1,8 +1,1 @@
-﻿  app.cpp
-c:\root_v5.34.36\include\tpad.h(326): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
-c:\root_v5.34.36\include\tpad.h(327): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
-c:\root_v5.34.36\include\tpad.h(328): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
-c:\root_v5.34.36\include\tpad.h(384): warning C4800: 'TVirtualViewer3D *const ': forcing value to bool 'true' or 'false' (performance warning)
-c:\users\tamarab\documents\github\liveimageandtimespectra\app\app.cpp(221): warning C4244: 'argument': conversion from 'double_t' to 'Int_t', possible loss of data
-c:\users\tamarab\documents\github\liveimageandtimespectra\app\app.cpp(227): warning C4244: 'argument': conversion from 'double_t' to 'Int_t', possible loss of data
-  app.vcxproj -> C:\Users\TamaraB\Documents\GitHub\LiveImageandTimeSpectra\Debug\app.exe
+﻿  app.vcxproj -> C:\Users\TamaraB\Documents\GitHub\LiveImageandTimeSpectra\Debug\app.exe

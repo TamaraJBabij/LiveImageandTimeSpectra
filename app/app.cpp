@@ -42,6 +42,12 @@ int main(int argc, char* argv[]) {
 	int setUpDebugEnvironment();
 	//initialises root app
 	TApplication* rootapp = new TApplication("example", &argc, argv);
+
+	
+
+
+	
+
 	TFile* rawFile = TFile::Open("../ReMi20166161454/Tree145440.root");
 	TTree* rawTree = (TTree*)rawFile->Get("T");
 	DataSet* data = loadFromTree(rawTree);
@@ -53,10 +59,7 @@ int main(int argc, char* argv[]) {
 	loadFromTreeDataSet(raw2Tree, data);
 	raw2File->Close();
 
-	TFile* raw3File = TFile::Open("../ReMi20166161454/Tree145440_2.root");
-	TTree* raw3Tree = (TTree*)raw3File->Get("T");
-	loadFromTreeDataSet(raw3Tree, data);
-	raw3File->Close();
+	
 
 	//tree->Draw("Time");
 	HistogramPair hists = plotTimeSpectraDS(data);

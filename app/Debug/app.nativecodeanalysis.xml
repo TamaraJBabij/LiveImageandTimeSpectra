@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\root_v5.34.36\include\</FILEPATH>
+      <FILENAME>snprintf.h</FILENAME>
+      <LINE>36</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'snprintf': this instance has no annotations. See c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1932). </DESCRIPTION>
+    <FUNCTION>snprintf</FUNCTION>
+    <DECORATED>snprintf</DECORATED>
+    <FUNCLINE>36</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
