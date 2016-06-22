@@ -8,12 +8,14 @@
 #include "TFile.h"
 #include "macros.h"
 #include "stdafx.h"
+#include <stdio.h>
+#include <string.h>
 
 //scans folder and loads all tree ( .root) files into the dataset
 DataSet* scanFiles() {
 	
 	string fileLocation;
-	cout << "what is the directory?" << endl;
+	cout << "what is the directory? (remember to add \ at the end" << endl;
 	cin >> fileLocation;
 	DataSet* data = new DataSet();
 
@@ -28,10 +30,16 @@ DataSet* scanFiles() {
 			if (strlen(fileName) > 5 && !strcmp(fileName + strlen(fileName) - 5, ".root")) {
 				//using string Folder Name acquire intiial tree
 				//Initial tree is given by ReMinumber with no underscore number
-				TFile* rawFile = TFile::Open(fileName);
+				cout << fileName << endl;
+				char str[256];
+				strcpy (str, fileLocation.c_str());
+				strcat(str, fileName);
+				cout << str << endl;
+				TFile* rawFile = TFile::Open(str);
 				TTree* rawTree = (TTree*)rawFile->Get("T");
 				loadFromTreeDataSet(rawTree, data);
 				rawFile->Close();
+				
 			}
 		}
 	}
@@ -43,5 +51,4 @@ DataSet* scanFiles() {
 	closedir(dir);
 
 	return data;
-
 }

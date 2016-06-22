@@ -14,6 +14,12 @@ enum Charge {
 	negative
 };
 
+enum imagingDetectors {
+	posDet = 'pos',
+	negDet = 'neg',
+	bothDet = 'both'
+};
+
 /*
 Enum for each possible particle type
 */
