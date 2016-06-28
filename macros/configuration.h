@@ -13,11 +13,11 @@
 // Electron detector
 #define CFG_CHANNEL_ELEC_CP2 16
 #define CFG_CHANNEL_ELEC_U1_S 21
-#define CFG_CHANNEL_ELEC_U2_S 22
+#define CFG_CHANNEL_ELEC_U2_S 18
 #define CFG_CHANNEL_ELEC_V1_S 19
 #define CFG_CHANNEL_ELEC_V2_S 20
 #define CFG_CHANNEL_ELEC_W1_S 17
-#define CFG_CHANNEL_ELEC_W2_S 18
+#define CFG_CHANNEL_ELEC_W2_S 22
 
 // External delays given by cabling from the detector potential divider to the NIM-ECL-NIM unit in ns NOT bins
 // Positron detector

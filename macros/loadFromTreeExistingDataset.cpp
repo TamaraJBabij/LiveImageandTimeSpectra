@@ -11,9 +11,9 @@ void loadFromTreeDataSet(TTree* tree, DataSet* data) {
 	int groupNumber, channel, bins;
 
 	//Set up the tree to store values from each entry of the raw data tree
-	tree->SetBranchAddress("groupnumber", &groupNumber);
-	tree->SetBranchAddress("channel", &channel);
-	tree->SetBranchAddress("time", &bins);
+	tree->SetBranchAddress("GroupNumber", &groupNumber);
+	tree->SetBranchAddress("Channel", &channel);
+	tree->SetBranchAddress("Time", &bins);
 
 	//Establish data container variables
 	Group* currentGroup = NULL;
