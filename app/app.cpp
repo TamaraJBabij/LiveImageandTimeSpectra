@@ -378,10 +378,10 @@ int main(int argc, char* argv[]) {
 	//if you want individual layers use this program, not currently implemented with userDet
 
 	//if (userDet == negDet) {
-		HistogramElecLayers UVWlayers = histogramElectronLayers(reconData);
+		//HistogramElecLayers UVWlayers = histogramElectronLayers(reconData);
 
-		//Delete comment \**\ if you want to calculate layers UVW and graph  
-		
+		//Delete comment /**\ if you want to calculate layers UVW and graph  
+		/*		
 		TCanvas c6("c6", "Sixth Canvas", w, h);
 		UVWlayers.UVlayers->SetMarkerColor(kBlue);
 		UVWlayers.UVlayers->SetLineColor(kBlue);
@@ -399,6 +399,7 @@ int main(int argc, char* argv[]) {
 		leg->AddEntry(UVWlayers.VWlayers, "WV layer");
 		cout << "hist layers run" << endl;
 		c6.Update();
+		*/
 		
 	//}
 	//differenceOfLayers(reconData);
