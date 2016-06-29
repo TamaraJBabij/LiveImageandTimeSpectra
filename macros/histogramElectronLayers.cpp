@@ -19,14 +19,14 @@ HistogramElecLayers histogramElectronLayers(DataSet *reconData) {
 	UVWlayers.VWlayers = new TH2D("electronDET", "VW layer", 2000, -60, 60, 2000, -60, 60);
 
 	for (Group* g : *reconData) {
-		if (g->electron.xy_uv == true) {
-			UVWlayers.UVlayers->Fill(g->electron.x_uv, g->electron.y_uv);
+		if (g->negative.xy_uv == true) {
+			UVWlayers.UVlayers->Fill(g->negative.x_uv, g->negative.y_uv);
 		}
-		if (g->electron.xy_uw == true) {
-			UVWlayers.UWlayers->Fill(g->electron.x_uw, g->electron.y_uw);
+		if (g->negative.xy_uw == true) {
+			UVWlayers.UWlayers->Fill(g->negative.x_uw, g->negative.y_uw);
 		}
-		if (g->electron.xy_vw == true) {
-			UVWlayers.VWlayers->Fill(g->electron.x_vw, g->electron.y_vw);
+		if (g->negative.xy_vw == true) {
+			UVWlayers.VWlayers->Fill(g->negative.x_vw, g->negative.y_vw);
 		}
 	}
 

@@ -21,7 +21,7 @@ HistogramTimeSums calculateTimeSums(DataSet* data, imagingDetectors userDet) {
 	timesums.layer_vpos = new TH1D("vpos", "TimeSum vpos layer", 800, 100, 200);
 	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 130, 160);
 	timesums.layer_uneg = new TH1D("uneg", "TimeSum uneg layer", 800, 0, 200);
-	timesums.layer_vneg = new TH1D("vneg", "TimeSum vneg layer", 800, 50, 150);
+	timesums.layer_vneg = new TH1D("vneg", "TimeSum vneg layer", 800, 0, 200);
 	timesums.layer_wneg = new TH1D("wneg", "TimeSum wneg layer", 800, 0, 200);
 	//Shared ptr, stops memory leaks
 	//timesums.test = std::make_shared<TH1D>("wneg", "TimeSum wneg layer", 200, 0, 1000);

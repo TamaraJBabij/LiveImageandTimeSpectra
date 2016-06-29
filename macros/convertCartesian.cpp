@@ -79,7 +79,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet) {
 			}
 		}
 	}
-	else if (userDet == pos) {
+	else if (userDet == posDet) {
 		for (Group* g : *reconData) {
 			//cout << "Group:" << endl;
 			for (Event* e : g->events) {
