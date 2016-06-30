@@ -371,6 +371,9 @@ int main(int argc, char* argv[]) {
 		XYpositions.electronDET->Draw("colz");
 	}
 
+	//Calibrate Mask Section
+
+
 	
 	//TCanvas c5("c5", "Fifth Canvas", w, h);
 	//XYpositions.ionDET->Draw("cont0");
@@ -378,30 +381,46 @@ int main(int argc, char* argv[]) {
 	//if you want individual layers use this program, not currently implemented with userDet
 
 	//if (userDet == negDet) {
-		//HistogramElecLayers UVWlayers = histogramElectronLayers(reconData);
+		HistogramElecLayers UVWlayers = histogramElectronLayers(reconData);
 
 		//Delete comment /**\ if you want to calculate layers UVW and graph  
-		/*		
+				
 		TCanvas c6("c6", "Sixth Canvas", w, h);
-		UVWlayers.UVlayers->SetMarkerColor(kBlue);
-		UVWlayers.UVlayers->SetLineColor(kBlue);
-		UVWlayers.UVlayers->Draw("hist");
+		//UVWlayers.UVlayers->SetMarkerColor(kBlue);
+		//UVWlayers.UVlayers->SetLineColor(kBlue);
+		//UVWlayers.UVlayers->Draw("hist");
 		UVWlayers.UWlayers->SetMarkerColor(kRed);
 		UVWlayers.UWlayers->SetLineColor(kRed);
-		UVWlayers.UWlayers->Draw("SameHist");
-		UVWlayers.VWlayers->SetLineColor(kBlack);
-		UVWlayers.VWlayers->Draw("SameHist");
+		UVWlayers.UWlayers->Draw("hist");
+		//UVWlayers.VWlayers->SetLineColor(kBlack);
+		//UVWlayers.VWlayers->Draw("SameHist");
 		c6.SetTitle("UVW Layers Combined; x (mm); y (mm)");
 		TLegend* leg = new TLegend(0.1,0.7,0.3,0.9, "Layers");
 		leg->Draw();
-		leg->AddEntry(UVWlayers.UVlayers, "UV layer");
+		//leg->AddEntry(UVWlayers.UVlayers, "UV layer");
 		leg->AddEntry(UVWlayers.UWlayers, "UW layer");
-		leg->AddEntry(UVWlayers.VWlayers, "WV layer");
+		//leg->AddEntry(UVWlayers.VWlayers, "WV layer");
 		cout << "hist layers run" << endl;
 		c6.Update();
-		*/
-		
-	//}
+		//}
+
+		calibrateLayersHist UVWMasklayers = histogramMaskLayers(reconData);
+
+		TCanvas c7("c7", "Seventh Canvas");
+		//UVWMasklayers.UVMasklayer->SetLineColor(kBlue);
+		//UVWMasklayers.UVMasklayer->Draw("hist");
+		UVWMasklayers.UWMasklayer->SetLineColor(kRed);
+		UVWMasklayers.UWMasklayer->Draw("hist");
+		//UVWMasklayers.VWMasklayer->SetLineColor(kBlack);
+		//UVWMasklayers.VWMasklayer->Draw("SameHist");
+		//TLegend* leg = new TLegend("Layers");
+		//leg->Draw();
+		//leg->AddEntry(UVWMasklayers.UVMasklayer, "UV layer");
+		//leg->AddEntry(UVWMasklayers.UWMasklayer, "UW layer");
+		//leg->AddEntry(UVWMasklayers.VWMasklayer, "WV layer");
+		cout << "hist layers run" << endl;
+		c7.Update();
+
 	//differenceOfLayers(reconData);
 
 	/*

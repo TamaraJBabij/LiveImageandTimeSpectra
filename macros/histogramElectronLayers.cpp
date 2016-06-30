@@ -14,9 +14,9 @@ HistogramElecLayers histogramElectronLayers(DataSet *reconData) {
 	//sort for particle type using 
 	//Particle is subset of event and contains time and x, y
 	HistogramElecLayers UVWlayers;
-	UVWlayers.UVlayers = new TH2D("electronDet", "UV layer", 2000, -60, 60, 2000, -60, 60);
-	UVWlayers.UWlayers = new TH2D("electronDET", "UW layer", 2000, -60, 60, 2000, -60, 60);
-	UVWlayers.VWlayers = new TH2D("electronDET", "VW layer", 2000, -60, 60, 2000, -60, 60);
+	UVWlayers.UVlayers = new TH2D("electronDet", "UV layer", 400, -60, 60, 400, -60, 60);
+	UVWlayers.UWlayers = new TH2D("electronDET", "UW layer", 400, -60, 60, 400, -60, 60);
+	UVWlayers.VWlayers = new TH2D("electronDET", "VW layer", 400, -60, 60, 400, -60, 60);
 
 	for (Group* g : *reconData) {
 		if (g->negative.xy_uv == true) {

@@ -129,6 +129,7 @@
     <ClCompile Include="firstCut.cpp" />
     <ClCompile Include="histogramDifferenceElecLayers.cpp" />
     <ClCompile Include="histogramElectronLayers.cpp" />
+    <ClCompile Include="histogramMaskLayers.cpp" />
     <ClCompile Include="histogramXYPositions.cpp" />
     <ClCompile Include="identifyAndTime.cpp" />
     <ClCompile Include="loadFromTreeExistingDataset.cpp" />

@@ -11,6 +11,7 @@
 #include "Event.h"
 #include "PitchPropSet.h"
 #include "HistElecDifferences.h"
+#include "calibrateLayersHist.h"
 
 
 TTree* readWriteTree(TTree* tree);
@@ -34,3 +35,4 @@ HistogramElecLayers histogramElectronLayers(DataSet *reconData);
 void differenceOfLayers(DataSet* reconData);
 HistogramDIFF histogramElecLayerDiff(DataSet *reconData);
 DataSet* scanFiles();
+calibrateLayersHist histogramMaskLayers(DataSet *reconData);

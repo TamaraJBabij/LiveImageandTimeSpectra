@@ -15,7 +15,7 @@
 DataSet* scanFiles() {
 	
 	string fileLocation;
-	cout << "what is the directory? (remember to add \ at the end" << endl;
+	cout << "what is the directory? remember to add a backslash at the end" << endl;
 	cin >> fileLocation;
 	DataSet* data = new DataSet();
 

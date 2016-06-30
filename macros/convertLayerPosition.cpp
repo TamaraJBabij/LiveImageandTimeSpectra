@@ -40,10 +40,10 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches, imagingDetec
 						//line2 - line 1 as u1 and u2 reversed (u2 on right hand side) x = righthandside-lefthandside
 						double Unogap = (negPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line2);
 						//cout << "U layer: " << Unogap << endl;
-						if (Unogap < 1) {
+						if (Unogap < -1) {
 							e->U = Unogap - (9 / 2);
 						}
-						else {
+						else if (Unogap > -1) {
 							e->U = Unogap + (9 / 2);
 						}
 					}
@@ -72,7 +72,7 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches, imagingDetec
 			}
 		}
 	}
-	else if (userDet == pos) {
+	else if (userDet == posDet) {
 		for (Group* g : *reconData) {
 			for (Event* e : g->events) {
 				if (e->mcp->detector == pos) {
@@ -104,7 +104,7 @@ void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches, imagingDetec
 						//line2 - line 1 as u1 and u2 reversed (u2 on right hand side) x = righthandside-lefthandside
 						double Unogap = (negPitches.ulayer / 2)*(e->uPairs.front().line1 - e->uPairs.front().line2);
 						//cout << "U layer: " << Unogap << endl;
-						if (Unogap < 1) {
+						if (Unogap < -1) {
 							e->U = Unogap - (9 / 2);
 						}
 						else {

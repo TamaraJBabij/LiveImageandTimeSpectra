@@ -84,6 +84,9 @@
     <ClInclude Include="HistElecDifferences.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="calibrateLayersHist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

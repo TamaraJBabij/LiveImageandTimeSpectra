@@ -149,6 +149,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="calibrateLayersHist.h" />
     <ClInclude Include="configlayers.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DataSet.h" />
