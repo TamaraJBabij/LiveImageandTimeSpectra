@@ -6,7 +6,7 @@
 #include "Constants.h"
 #include "MCPTDiff.h"
 #include "ReconBool.h"
-
+#include "Particle.h"
 
 
 //stores the associated layer hits for the mcp hit 
@@ -57,5 +57,8 @@ public:
 	double U;
 	double V;
 	double W;
+
+	Particle positive;
+	Particle negative;
 
 };

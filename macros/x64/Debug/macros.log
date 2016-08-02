@@ -1,50 +1,67 @@
 ﻿  treeIO.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\treeio.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\treeio.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   sortReconData.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\sortrecondata.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\sortrecondata.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   selectPosIonElec.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\selectposionelec.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\selectposionelec.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   scanFiles.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\scanfiles.cpp(2): fatal error C1083: Cannot open include file: 'dirent.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\scanfiles.cpp(2): fatal error C1083: Cannot open include file: 'dirent.h': No such file or directory
   ReadWriteTree.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\readwritetree.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\readwritetree.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+  positionsTreeToDataSet.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\positionstreetodataset.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   plotTimeSums.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\plottimesums.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\plottimesums.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   plotTimeSpectraEvents.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\plottimespectraevents.cpp(1): fatal error C1083: Cannot open include file: 'HistogramPair.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\plottimespectraevents.cpp(1): fatal error C1083: Cannot open include file: 'HistogramPair.h': No such file or directory
   plotTimeSpectraDS.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\plottimespectrads.cpp(1): fatal error C1083: Cannot open include file: 'HistogramPair.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\plottimespectrads.cpp(1): fatal error C1083: Cannot open include file: 'HistogramPair.h': No such file or directory
   plotTimeSpectra.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\plottimespectra.cpp(3): fatal error C1083: Cannot open include file: 'HistogramPair.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\plottimespectra.cpp(3): fatal error C1083: Cannot open include file: 'HistogramPair.h': No such file or directory
   loadFromTreeExistingDataset.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\loadfromtreeexistingdataset.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\loadfromtreeexistingdataset.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   identifyAndTime.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\identifyandtime.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\identifyandtime.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   histogramXYPositions.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\histogramxypositions.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\histogramxypositions.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  histogramUVWPositions.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\histogramuvwpositions.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  histogramMaskLayers.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\histogrammasklayers.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
   histogramElectronLayers.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\histogramelectronlayers.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\histogramelectronlayers.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
   histogramDifferenceElecLayers.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\histogramdifferenceeleclayers.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\histogramdifferenceeleclayers.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  getCalibrationParameters.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\getcalibrationparameters.cpp(1): fatal error C1083: Cannot open include file: 'PitchPropSet.h': No such file or directory
   firstCut.cpp
   differenceOfLayers.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\differenceoflayers.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
-  convertLayerPosition.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\convertlayerposition.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
-  convertCartesian.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\convertcartesian.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
-  constructEvents.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\constructevents.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
-  checkTimeSums.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\checktimesums.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\differenceoflayers.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   Generating Code...
   Compiling...
+  histogramDensity.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\histogramdensity.cpp(1): error C2065: 'DataSet': undeclared identifier
+c:\users\tamara\documents\github\calibratedetectors\macros\histogramdensity.cpp(1): error C2065: 'data': undeclared identifier
+c:\users\tamara\documents\github\calibratedetectors\macros\histogramdensity.cpp(1): error C2065: 'imagingDetectors': undeclared identifier
+c:\users\tamara\documents\github\calibratedetectors\macros\histogramdensity.cpp(1): error C2146: syntax error: missing ')' before identifier 'userDet'
+  createMaskDataTree.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\createmaskdatatree.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  convertLayerPosition.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\convertlayerposition.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+  convertCartesian.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\convertcartesian.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+  constructEvents.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\constructevents.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+  checkTimeSums.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\checktimesums.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+  checkDensity.cpp
+c:\users\tamara\documents\github\calibratedetectors\macros\checkdensity.cpp(1): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   calculateTimeSums.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\calculatetimesums.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\calculatetimesums.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   calculatePitchProp.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\macros\calculatepitchprop.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
+c:\users\tamara\documents\github\calibratedetectors\macros\calculatepitchprop.cpp(2): fatal error C1083: Cannot open include file: 'DataSet.h': No such file or directory
   checkReconstructable.cpp
-c:\users\tamarab\documents\github\liveimageandtimespectra\app\checkreconstructable.cpp(33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\tamarab\documents\github\liveimageandtimespectra\app\checkreconstructable.cpp(34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\tamarab\documents\github\liveimageandtimespectra\app\checkreconstructable.cpp(35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\tamara\documents\github\calibratedetectors\app\checkreconstructable.cpp(33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\tamara\documents\github\calibratedetectors\app\checkreconstructable.cpp(34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\tamara\documents\github\calibratedetectors\app\checkreconstructable.cpp(35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Generating Code...

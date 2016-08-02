@@ -121,15 +121,21 @@
     <ClCompile Include="..\app\checkReconstructable.cpp" />
     <ClCompile Include="calculatePitchProp.cpp" />
     <ClCompile Include="calculateTimeSums.cpp" />
+    <ClCompile Include="calibrateFromSlope.cpp" />
+    <ClCompile Include="checkDensity.cpp" />
     <ClCompile Include="checkTimeSums.cpp" />
     <ClCompile Include="constructEvents.cpp" />
     <ClCompile Include="convertCartesian.cpp" />
     <ClCompile Include="convertLayerPosition.cpp" />
+    <ClCompile Include="createMaskDataTree.cpp" />
+    <ClCompile Include="histogramDensity.cpp" />
     <ClCompile Include="differenceOfLayers.cpp" />
     <ClCompile Include="firstCut.cpp" />
+    <ClCompile Include="getCalibrationParameters.cpp" />
     <ClCompile Include="histogramDifferenceElecLayers.cpp" />
     <ClCompile Include="histogramElectronLayers.cpp" />
     <ClCompile Include="histogramMaskLayers.cpp" />
+    <ClCompile Include="histogramUVWPositions.cpp" />
     <ClCompile Include="histogramXYPositions.cpp" />
     <ClCompile Include="identifyAndTime.cpp" />
     <ClCompile Include="loadFromTreeExistingDataset.cpp" />
@@ -137,10 +143,12 @@
     <ClCompile Include="plotTimeSpectraDS.cpp" />
     <ClCompile Include="plotTimeSpectraEvents.cpp" />
     <ClCompile Include="plotTimeSums.cpp" />
+    <ClCompile Include="positionsTreeToDataSet.cpp" />
     <ClCompile Include="ReadWriteTree.cpp" />
     <ClCompile Include="scanFiles.cpp" />
     <ClCompile Include="selectPosIonElec.cpp" />
     <ClCompile Include="sortReconData.cpp" />
+    <ClCompile Include="sumOfDifference.cpp" />
     <ClCompile Include="treeIO.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +156,9 @@
     <ClInclude Include="..\app\configparticletimes.h" />
     <ClInclude Include="configuration.h" />
     <ClInclude Include="LayerLengthsConfig.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\app\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

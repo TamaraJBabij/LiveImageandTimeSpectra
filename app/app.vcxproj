@@ -146,10 +146,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="calibrateLayersHist.h" />
+    <ClInclude Include="CalibrationParameters.h" />
     <ClInclude Include="configlayers.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DataSet.h" />
@@ -162,14 +160,17 @@
     <ClInclude Include="HistogramPair.h" />
     <ClInclude Include="HistogramTimeSums.h" />
     <ClInclude Include="HistogramXY.h" />
+    <ClInclude Include="HistUVWPositions.h" />
     <ClInclude Include="Hit.h" />
     <ClInclude Include="LayerHit.h" />
     <ClInclude Include="macros.h" />
     <ClInclude Include="MCPTDiff.h" />
+    <ClInclude Include="Particle.h" />
     <ClInclude Include="PitchData.h" />
     <ClInclude Include="PitchPropSet.h" />
     <ClInclude Include="ReconBool.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="sumOfDifferencesHist.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TripleCheck.h" />
   </ItemGroup>
@@ -180,6 +181,7 @@
     <ClCompile Include="FitSet.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="histlayerSums.h" />
     <ClCompile Include="PitchSet.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

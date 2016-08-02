@@ -11,6 +11,7 @@
 #include "FitSet.h"
 #include "FitData.h"
 #include "LayerHit.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -20,7 +21,10 @@ using namespace std;
 void checkTimeSums(DataSet* data, FitSet fits, imagingDetectors userDet) {
 	//need to store thresholds
 	// 2 sigma for each layer
-
+	
+		
+	
+	
 	//check errors of fits, cout error if error of fits over threshold
 	//need to add this in later when more data is put through code
 	//error for each layer compared to errormax in configlayers 
@@ -138,7 +142,7 @@ void checkTimeSums(DataSet* data, FitSet fits, imagingDetectors userDet) {
 			}
 		}
 	}
-	else if (userDet == pos) {
+	else if (userDet == posDet) {
 				for (Group* g : *data) {
 					for (Event* e : g->events) {
 
@@ -196,8 +200,9 @@ void checkTimeSums(DataSet* data, FitSet fits, imagingDetectors userDet) {
 					}
 				}
 			}
-	else {
+	else if (userDet == negDet) {
 		//must be negative det
+		//cout << "neg det in check time sums" << endl;
 		for (Group* g : *data) {
 			for (Event* e : g->events) {
 				//positive detector layer hits

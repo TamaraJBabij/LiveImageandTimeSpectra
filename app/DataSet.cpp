@@ -9,7 +9,9 @@ DataSet::DataSet(){
 
 //code for the destructor
 DataSet::~DataSet(){
-
+	for (Group* g : data) {
+		delete g;
+	}
 }
 
 

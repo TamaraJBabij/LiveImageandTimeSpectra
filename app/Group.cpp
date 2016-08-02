@@ -17,8 +17,13 @@ Group::Group(int _id)
 }
 Group::Group(){}
 //destructor
-Group::~Group()
-{
+Group::~Group() {
+	for (Hit* h : rawData) {
+		delete h;
+	}
+	for (Event* e : events) {
+		delete e;
+	}
 }
 
 //gets ID of current group

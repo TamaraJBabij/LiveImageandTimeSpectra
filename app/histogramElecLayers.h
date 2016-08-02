@@ -9,4 +9,7 @@ struct HistogramElecLayers {
 	TH2D* UVlayers;
 	TH2D* UWlayers;
 	TH2D* VWlayers;
+	TH2D* UVPoslayers;
+	TH2D* UWPoslayers;
+	TH2D* VWPoslayers;
 };

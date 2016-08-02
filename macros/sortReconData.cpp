@@ -14,7 +14,7 @@
 //creates a new dataset with reconstructable data
 DataSet* sortReconData(DataSet* data) {
 	DataSet* reconData = new DataSet();
-	cout << "recon program run" << endl;
+	//cout << "recon program run" << endl;
 
 	//sort out useful data groups
 	for (Group* g : *data) {
