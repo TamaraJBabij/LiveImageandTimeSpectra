@@ -47,3 +47,9 @@ Temporary Items
 .apdisk
 *.suo
 app/Debug/app.Build.CppClean.log
+*.log
+*.obj
+*.pch
+*.obj
+macros/Debug/sortReconData.obj
+*.root

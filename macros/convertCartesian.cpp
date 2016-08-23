@@ -26,25 +26,31 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 					int count = 0;
 					if (e->uPairs.size() == 1 && e->vPairs.size() == 1) {
 						//g->positron = Particle(32,23123,2341)
-						p.x_uv = e->U;
-						p.y_uv = (1.0 / sqrt(3))*(e->U - 2 * e->V);
+						//p.x_uv = e->U;
+						p.x_uv = - e->U;
+						//p.y_uv = (1.0 / sqrt(3))*(e->U - 2 * e->V);
+						p.y_uv = (1.0 / sqrt(3))*( e->U - 2 * e->V);
 						p.x += p.x_uv;
 						p.y += p.y_uv;
+						//cout << "Xuv: " << p.x_uv << endl;
+						//cout << "Yuv: " << p.y_uv << endl;
 						count++;
 						p.xy_uv = true;
-						//cout << "UV: " << p.y_uv << endl;
 					}
 					else if (e->uPairs.size() == 1 && e->wPairs.size() == 1) {
-						p.x_uw = e->U;
-						p.y_uw = (1.0 / sqrt(3))*(2 * e->W - e->U);
+						//p.x_uw = e->U;
+						p.x_uw = - e->U;
+						//p.y_uw = (1.0 / sqrt(3))*(2 * e->W - e->U);
+						p.y_uw = (1.0 / sqrt(3))*(2 * e->W + e->U);
 						p.x += p.x_uw;
 						p.y += p.y_uw;
 						count++;
 						p.xy_uw = true;
-						//cout << "UW: " << p.y_uw << endl;
 					}
 					else if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
-						p.x_vw = e->V + e->W;
+						//p.x_vw = e->W + e->V;
+						p.x_vw = -e->W - e->V; //v+w
+						//p.y_vw = (1.0 / sqrt(3))*(e->W - e->V);
 						p.y_vw = (1.0 / sqrt(3))*(e->W - e->V);
 						p.x += p.x_vw;
 						p.y += p.y_vw;
@@ -54,6 +60,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 					p.x = p.x / count;
 					p.y = p.y / count;
 					e->positive = p;
+					XYpositions->positronDET->Fill(e->positive.x, e->positive.y);
 				}
 				else if (e->mcp->detector == neg) {
 					Particle p;
@@ -88,7 +95,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.xy_uw = true;
 					}
 					if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
-						p.x_vw = e->V + e->W;
+						p.x_vw = e->V - e->W;
 						p.y_vw = (1.0 / sqrt(3))*(e->W + e->V);
 						p.x += p.x_vw;
 						p.y += p.y_vw;
@@ -100,6 +107,9 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 					//cout << "x " << p.x << endl;
 					//cout << "y " << p.y << endl;
 					e->negative = p;
+					
+					XYpositions->electronDET->Fill(e->negative.x, e->negative.y);
+						
 				}
 			}
 		}
@@ -119,10 +129,10 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 					int count = 0;
 					if (e->uPairs.size() == 1 && e->vPairs.size() == 1) {
 						//g->positron = Particle(32,23123,2341)
-						p.x_uv = e->U;
-						//p.x_uv = -e->U;
-						p.y_uv = (1.0 / sqrt(3))*(e->U - 2 * e->V);
-						//p.y_uv = (1.0 / sqrt(3))*( e->U - 2 * e->V);
+						//p.x_uv = e->U;
+						p.x_uv = -e->U;
+						//p.y_uv = (1.0 / sqrt(3))*(e->U - 2 * e->V);
+						p.y_uv = (1.0 / sqrt(3))*( e->U - 2 * e->V);
 						p.x += p.x_uv;
 						p.y += p.y_uv;
 						//cout << "Xuv: " << p.x_uv << endl;
@@ -131,20 +141,20 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.xy_uv = true;
 					}
 					else if (e->uPairs.size() == 1 && e->wPairs.size() == 1) {
-						p.x_uw = e->U;
-						//p.x_uw = -e->U;
-						p.y_uw = (1.0 / sqrt(3))*(2 * e->W - e->U);
+						//p.x_uw = e->U;
+						p.x_uw = -e->U;
 						//p.y_uw = (1.0 / sqrt(3))*(2 * e->W - e->U);
+						p.y_uw = (1.0 / sqrt(3))*(2 * e->W + e->U);
 						p.x += p.x_uw;
 						p.y += p.y_uw;
 						count++;
 						p.xy_uw = true;
 					}
 					else if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
-						p.x_vw = e->W + e->V;
-						//p.x_vw = - e->W - e->V; //v+w
-						p.y_vw = (1.0 / sqrt(3))*(e->W - e->V);
+						//p.x_vw = e->W + e->V;
+						p.x_vw = - e->W - e->V; //v+w
 						//p.y_vw = (1.0 / sqrt(3))*(e->W - e->V);
+						p.y_vw = (1.0 / sqrt(3))*(e->W - e->V);
 						p.x += p.x_vw;
 						p.y += p.y_vw;
 						count++;

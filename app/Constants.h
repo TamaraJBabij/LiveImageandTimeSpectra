@@ -20,6 +20,13 @@ enum imagingDetectors {
 	bothDet = 'both'
 };
 
+enum commandInfo {
+	imageInfo = 'imag',
+	timesumInfo = 'time',
+	bothInfo = 'both'
+
+};
+
 /*
 Enum for each possible particle type
 */

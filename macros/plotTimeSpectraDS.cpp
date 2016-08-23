@@ -4,25 +4,30 @@
 #include "configuration.h"
 #include "DataSet.h"
 #include "Constants.h"
+#include <iostream>
+#include "DataSet.h"
+#include "stdafx.h"
+#include "Group.h"
+#include "PitchPropSet.h"
+#include "PitchData.h"
+#include "math.h"
+#include "Constants.h"
+#include "histogramElecLayers.h"
+#include "calibrateLayersHist.h"
 
 using namespace std;
 
-HistogramPair plotTimeSpectraDS(DataSet* data, imagingDetectors userDet) {
-
-	//Histogram both positive and negative MCP detector pulses, all relative to positron time
-	HistogramPair histograms;
-	histograms.positive = new TH1D("hpos", "TimeSpectrum positive", 500, -2000, 32000);
-	histograms.negative = new TH1D("hneg", "TimeSpectrum negative", 500, -2000, 32000);
-
+void plotTimeSpectraDS(DataSet* data, imagingDetectors userDet, HistogramPair *histograms) {
+	//cout << "plotTimeSpectraDS has run" << endl;
 	if (userDet == bothDet) {
 		for (Group* g : *data) {
 			for (Hit* h : *g) {
 				if (h->channel == mcp) {
 					if (h->detector == pos) {
-						histograms.positive->Fill(h->time);
+						histograms->positive->Fill(h->time);
 					}
 					else if (h->detector == neg) {
-						histograms.negative->Fill(h->time);
+						histograms->negative->Fill(h->time);
 					}
 
 				}
@@ -36,7 +41,7 @@ HistogramPair plotTimeSpectraDS(DataSet* data, imagingDetectors userDet) {
 				for (Hit* h : *g) {
 					if (h->channel == mcp) {
 						if (h->detector == pos) {
-							histograms.positive->Fill(h->time);
+							histograms->positive->Fill(h->time);
 						}
 					}
 				}
@@ -51,7 +56,7 @@ HistogramPair plotTimeSpectraDS(DataSet* data, imagingDetectors userDet) {
 				for (Hit* h : *g) {
 					if (h->channel == mcp) {
 						if (h->detector == neg) {
-							histograms.negative->Fill(h->time);
+							histograms->negative->Fill(h->time);
 						}
 
 					}
@@ -59,5 +64,4 @@ HistogramPair plotTimeSpectraDS(DataSet* data, imagingDetectors userDet) {
 			}
 		
 	}
-	return histograms;
 }
