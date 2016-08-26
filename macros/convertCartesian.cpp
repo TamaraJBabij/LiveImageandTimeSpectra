@@ -11,6 +11,10 @@
 #include "calibrateLayersHist.h"
 
 void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, HistogramXY* XYpositions = NULL, HistogramElecLayers* UVWlayers = NULL, calibrateLayersHist* UVWMasklayers = NULL) {
+	int uvreconcount = 0;
+	int uwreconcount = 0;
+	int vwreconcount = 0;
+
 	if (userDet == bothDet) {
 		for (Group* g : *reconData) {
 			//cout << "Group:" << endl;
@@ -85,6 +89,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.y += p.y_uv;
 						count++;
 						p.xy_uv = true;
+						uvreconcount++;
 					}
 					if (e->uPairs.size() == 1 && e->wPairs.size() == 1) {
 						p.x_uw = e->U;
@@ -93,6 +98,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.y += p.y_uw;
 						count++;
 						p.xy_uw = true;
+						uwreconcount++;
 					}
 					if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
 						p.x_vw = e->V - e->W;
@@ -101,6 +107,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.y += p.y_vw;
 						count++;
 						p.xy_vw = true;
+						vwreconcount++;
 					}
 					p.x = p.x / count;
 					p.y = p.y / count;
@@ -139,6 +146,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						//cout << "Yuv: " << p.y_uv << endl;
 						count++;
 						p.xy_uv = true;
+						uvreconcount++;
 					}
 					else if (e->uPairs.size() == 1 && e->wPairs.size() == 1) {
 						//p.x_uw = e->U;
@@ -149,6 +157,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.y += p.y_uw;
 						count++;
 						p.xy_uw = true;
+						uwreconcount++;
 					}
 					else if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
 						//p.x_vw = e->W + e->V;
@@ -159,6 +168,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.y += p.y_vw;
 						count++;
 						p.xy_vw = true;
+						vwreconcount++;
 					}
 					p.x = p.x / count;
 					p.y = p.y / count;
@@ -170,9 +180,9 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 							UVWlayers->VWlayers->Fill(e->negative.x_vw, e->negative.y_vw);
 						}
 						if (userDet == posDet) {
-							UVWlayers->UVPoslayers->Fill(e->positive.x_uv, e->positive.y_uv);
-							UVWlayers->UWPoslayers->Fill(e->positive.x_uw, e->positive.y_uw);
-							UVWlayers->VWPoslayers->Fill(e->positive.x_vw, e->positive.y_vw);
+							//UVWlayers->UVPoslayers->Fill(e->positive.x_uv, e->positive.y_uv);
+							//UVWlayers->UWPoslayers->Fill(e->positive.x_uw, e->positive.y_uw);
+							//UVWlayers->VWPoslayers->Fill(e->positive.x_vw, e->positive.y_vw);
 						}
 					}
 					if (XYpositions != NULL) {
@@ -246,6 +256,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.y += p.y_uv;
 						count++;
 						p.xy_uv = true;
+						uvreconcount++;
 					}
 					if (e->uPairs.size() == 1 && e->wPairs.size() == 1) {
 						p.x_uw = e->U;
@@ -254,6 +265,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.y += p.y_uw;
 						count++;
 						p.xy_uw = true;
+						uwreconcount++;
 					}
 					if (e->vPairs.size() == 1 && e->wPairs.size() == 1) {
 						p.x_vw = e->V - e->W;
@@ -262,7 +274,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						p.y += p.y_vw;
 						count++;
 						p.xy_vw = true;
-						
+						vwreconcount++;
 					}
 					p.x = p.x / count;
 					p.y = p.y / count;
@@ -284,76 +296,20 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 					if (XYpositions != NULL) {
 						if (userDet == negDet) {
 							XYpositions->electronDET->Fill(e->negative.x, e->negative.y);
-							if (e->negative.xy_uv == true) {
-								if (e->negative.y_uv<60 && e->negative.y_uv>-60) {
-									UVWMasklayers->UVMasklayer->Fill(e->negative.x_uv);
-								}
-							}
-							if (e->negative.xy_uw == true) {
-								if (e->negative.y_uw<60 && e->negative.y_uw>-60) {
-									UVWMasklayers->UWMasklayer->Fill(e->negative.x_uw);
-								}
-							}
-							if (e->negative.xy_vw == true) {
-								if (e->negative.y_vw<60 && e->negative.y_vw> -60) {
-									UVWMasklayers->VWMasklayer->Fill(e->negative.x_vw);
-								}
-							}
-							if (e->negative.xy_uv == true) {
-								if (e->negative.x_uv<60 && e->negative.x_uv>-60) {
-									UVWMasklayers->UVMasklayerY->Fill(e->negative.y_uv);
-								}
-							}
-							if (e->negative.xy_uw == true) {
-								if (e->negative.x_uw<60 && e->negative.x_uw>-60) {
-									UVWMasklayers->UWMasklayerY->Fill(e->negative.y_uw);
-								}
-							}
-							if (e->negative.xy_vw == true) {
-								if (e->negative.x_vw<60 && e->negative.x_vw> -60) {
-									UVWMasklayers->VWMasklayerY->Fill(e->negative.y_vw);
-								}
-							}
+						
 						}
 						if (userDet == posDet) {
 							XYpositions->positronDET->Fill(e->positive.x, e->positive.y);
-							//cout << e->positive.x << " " << e->positive.y << endl;
-							if (e->positive.xy_uv == true) {
-								if (e->positive.y_uv<60 && e->positive.y_uv>-60) {
-									UVWMasklayers->UVPosMasklayer->Fill(e->positive.x_uv);
-								}
-							}
-							if (e->positive.xy_uw == true) {
-								if (e->positive.y_uw<60 && e->positive.y_uw>-60) {
-									UVWMasklayers->UWPosMasklayer->Fill(e->positive.x_uw);
-								}
-							}
-							if (e->positive.xy_vw == true) {
-								if (e->positive.y_vw<60 && e->positive.y_vw> -60) {
-									UVWMasklayers->VWPosMasklayer->Fill(e->positive.x_vw);
-								}
-							}
-							if (e->positive.xy_uv == true) {
-								if (e->positive.x_uv<60 && e->positive.x_uv>-60) {
-									UVWMasklayers->UVPosMasklayerY->Fill(e->positive.y_uv);
-								}
-							}
-							if (e->positive.xy_uw == true) {
-								if (e->positive.x_uw<60 && e->positive.x_uw>-60) {
-									UVWMasklayers->UWPosMasklayerY->Fill(e->positive.y_uw);
-								}
-							}
-							if (e->positive.xy_vw == true) {
-								if (e->positive.x_vw<60 && e->positive.x_vw> -60) {
-									UVWMasklayers->VWPosMasklayerY->Fill(e->positive.y_vw);
-								}
-							}
+						
 						}
 					}
 				}
 			}
 		}
 	}
+	cout << "uv recons per tree:" << uvreconcount << endl;
+	cout << "uw recons per tree:" << uwreconcount << endl;
+	cout << "vw recons per tree:" << vwreconcount << endl;
 	/*
 	else {
 		cout << "no detector detected in convert cartesian" << endl;
