@@ -18,50 +18,19 @@
 using namespace std;
 
 void plotTimeSpectraDS(DataSet* data, imagingDetectors userDet, HistogramPair *histograms) {
-	//cout << "plotTimeSpectraDS has run" << endl;
-	if (userDet == bothDet) {
-		for (Group* g : *data) {
-			for (Hit* h : *g) {
-				if (h->channel == mcp) {
-					if (h->detector == pos) {
-						histograms->positive->Fill(h->time);
-					}
-					else if (h->detector == neg) {
-						histograms->negative->Fill(h->time);
-					}
-
+	//Plots the time of every MCP (CP2) hit
+	//This is in absolute timing, as the events have not been made relative to the positron hit
+	for (Group* g : *data) {
+		for (Hit* h : *g) {
+			if (h->channel == mcp) {
+				if (h->detector == pos && (userDet == posDet || userDet == bothDet)) {
+					histograms->positive->Fill(h->time);
 				}
+				else if (h->detector == neg && (userDet == negDet || userDet == bothDet)) {
+					histograms->negative->Fill(h->time);
+				}
+
 			}
 		}
-	}
-
-	else if (userDet == posDet) {
-		
-			for (Group* g : *data) {
-				for (Hit* h : *g) {
-					if (h->channel == mcp) {
-						if (h->detector == pos) {
-							histograms->positive->Fill(h->time);
-						}
-					}
-				}
-			}
-		
-	}
-
-	//must be negative det only then
-	else {
-		
-			for (Group* g : *data) {
-				for (Hit* h : *g) {
-					if (h->channel == mcp) {
-						if (h->detector == neg) {
-							histograms->negative->Fill(h->time);
-						}
-
-					}
-				}
-			}
-		
 	}
 }

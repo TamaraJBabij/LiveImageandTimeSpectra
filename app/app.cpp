@@ -92,7 +92,7 @@ int main(int argc, char* argv[]) {
 	else if (operationInfo.compare("time") == 0) {
 		userInfo = timesumInfo;
 	}
-	else if (detinput.compare("both") == 0) {
+	else if (operationInfo.compare("both") == 0) {
 		userInfo = bothInfo;
 	}
 	else {
@@ -127,17 +127,18 @@ int main(int argc, char* argv[]) {
 	TCanvas XYNegDet("Negative Detector", "XY Positions", canvasWidth, h);
 	TCanvas TimeSpectra("Time Spectrum", "Time Spectrum (abs)");
 	HistogramPair histTimeSpec;
-	
+	TCanvas UVWNeglayersCanvas("UVW layers Canvas", "UVW Negative Detector", canvasWidth, h);
+	HistogramElecLayers UVWlayers;
 
 	if (userDet == bothDet) {
-		XYpositions.positronDET = new TH2D("positronDET", "Positrons", 400, -60, 60, 400, -60, 60);
-		XYpositions.electronDET = new TH2D("electronDET", "Electrons", 400, -60, 60, 400, -60, 60);
+		XYpositions.positronDET = new TH2D("positronDET", "Positrons", 250, -60, 60, 250, -60, 60);
+		XYpositions.electronDET = new TH2D("electronDET", "Electrons", 250, -60, 60, 250, -60, 60);
 		XYPosDet.cd();
 		XYpositions.positronDET->Draw("colz");
 		XYNegDet.cd();
 		XYpositions.electronDET->Draw("colz");
-		histTimeSpec.positive = new TH1D("hpos", "TimeSpectrum positive", 500, -2000, 32000);
-		histTimeSpec.negative = new TH1D("hneg", "TimeSpectrum negative", 500, -2000, 32000);
+		histTimeSpec.positive = new TH1D("hpos", "TimeSpectrum positive", 500, 0, 32000);
+		histTimeSpec.negative = new TH1D("hneg", "TimeSpectrum negative", 500, 0, 32000);
 		TimeSpectra.Divide(1, 2);
 		TimeSpectra.cd(1);
 		histTimeSpec.positive->Draw();
@@ -159,6 +160,25 @@ int main(int argc, char* argv[]) {
 		histTimeSpec.negative = new TH1D("hpos", "TimeSpectrum negative", 500, -2000, 32000);
 		TimeSpectra.cd();
 		histTimeSpec.negative->Draw();
+		UVWNeglayersCanvas.cd();
+		UVWlayers.UVlayers = new TH2D("electronDET", "UV layer", 400, -60, 60, 400, -60, 60);
+		UVWlayers.UWlayers = new TH2D("electronDET", "UW layer", 400, -60, 60, 400, -60, 60);
+		UVWlayers.VWlayers = new TH2D("electronDET", "VW layer", 400, -60, 60, 400, -60, 60);
+		UVWlayers.UVlayers->SetMarkerColor(kBlue);
+		UVWlayers.UVlayers->SetLineColor(kBlue);
+		UVWlayers.UWlayers->SetMarkerColor(kRed);
+		UVWlayers.UWlayers->SetLineColor(kRed);
+		UVWlayers.VWlayers->SetLineColor(kBlack);
+		UVWlayers.UVlayers->Draw("hist");
+		UVWlayers.UWlayers->Draw("SameHist");
+		UVWlayers.VWlayers->Draw("SameHist");
+		UVWNeglayersCanvas.SetTitle("UVW Layers Combined; x (mm); y (mm)");
+		TLegend* elecLegend = new TLegend(0.1, 0.7, 0.3, 0.9, "Layers");
+		elecLegend->AddEntry(UVWlayers.UVlayers, "UV layer");
+		elecLegend->AddEntry(UVWlayers.UWlayers, "UW layer");
+		elecLegend->AddEntry(UVWlayers.VWlayers, "WV layer");
+		elecLegend->Draw();
+		
 	}
 	//Histograms the positron and electron layers, need to change name
 	
@@ -408,12 +428,14 @@ int main(int argc, char* argv[]) {
 
 						convertLayerPosition(reconData, Pitches, userDet);
 
-						convertCartesianPosition(reconData, userDet, &XYpositions);
+						convertCartesianPosition(reconData, userDet, &XYpositions, &UVWlayers);
 
 						XYPosDet.Modified();
 						XYPosDet.Update();
 						XYNegDet.Modified();
 						XYNegDet.Update();
+						UVWNeglayersCanvas.Modified();
+						UVWNeglayersCanvas.Update();
 						
 
 						//histogram detector images with 2D histogram
