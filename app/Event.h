@@ -58,6 +58,10 @@ public:
 	double V;
 	double W;
 
+	//If user wants to image a certain timing window. 
+	//Bool is for whether event is in timing window (true) or not in timing window (false)
+	bool imageHit;
+
 	Particle positive;
 	Particle negative;
 

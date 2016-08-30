@@ -27,6 +27,11 @@ enum commandInfo {
 
 };
 
+enum imagingTOFInfo {
+	imageallTOF = 'n',
+	imagesubsetTOF = 'y'
+};
+
 /*
 Enum for each possible particle type
 */

@@ -1,4 +1,51 @@
-﻿  convertCartesian.cpp
+﻿  treeIO.cpp
+  sumOfDifference.cpp
+  sortReconData.cpp
+  selectPosIonElec.cpp
+  scanFiles.cpp
+  ReadWriteTree.cpp
+  positionsTreeToDataSet.cpp
+  plotTimeSums.cpp
+c:\root_v5.34.34\include\tpad.h(326): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
+c:\root_v5.34.34\include\tpad.h(327): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
+c:\root_v5.34.34\include\tpad.h(328): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
+c:\root_v5.34.34\include\tpad.h(384): warning C4800: 'TVirtualViewer3D *const ': forcing value to bool 'true' or 'false' (performance warning)
+  plotTimeSpectraEvents.cpp
+  plotTimeSpectraDS.cpp
+  plotTimeSpectra.cpp
+c:\users\tamara\documents\github\liveimageandtimespectra\macros\plottimespectra.cpp(33): warning C4101: 'timeDouble': unreferenced local variable
+  loadFromTreeExistingDataset.cpp
+  identifyAndTime.cpp
+  histogramXYPositions.cpp
+  histogramUVWPositions.cpp
+c:\users\tamara\documents\github\liveimageandtimespectra\macros\histogramuvwpositions.cpp(19): warning C4805: '==': unsafe mix of type 'double' and type 'bool' in operation
+c:\users\tamara\documents\github\liveimageandtimespectra\macros\histogramuvwpositions.cpp(23): warning C4805: '==': unsafe mix of type 'double' and type 'bool' in operation
+c:\users\tamara\documents\github\liveimageandtimespectra\macros\histogramuvwpositions.cpp(26): warning C4805: '==': unsafe mix of type 'double' and type 'bool' in operation
+  histogramMaskLayers.cpp
+  histogramElectronLayers.cpp
+  histogramDifferenceElecLayers.cpp
+  getCalibrationParameters.cpp
+c:\root_v5.34.34\include\tpad.h(326): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
+c:\root_v5.34.34\include\tpad.h(327): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
+c:\root_v5.34.34\include\tpad.h(328): warning C4800: 'Int_t': forcing value to bool 'true' or 'false' (performance warning)
+c:\root_v5.34.34\include\tpad.h(384): warning C4800: 'TVirtualViewer3D *const ': forcing value to bool 'true' or 'false' (performance warning)
+  firstCut.cpp
+  Generating Code...
+c:\users\tamara\documents\github\liveimageandtimespectra\macros\readwritetree.cpp(108): warning C4172: returning address of local variable or temporary: treeDS
+  Compiling...
+  differenceOfLayers.cpp
+  histogramDensity.cpp
+  createMaskDataTree.cpp
+  convertLayerPosition.cpp
+  convertCartesian.cpp
+  constructEvents.cpp
+  checkTimeSums.cpp
+  checkDensity.cpp
+  calibrateFromSlope.cpp
+  calculateTimeSums.cpp
+  calculatePitchProp.cpp
+  checkReconstructable.cpp
+  Generating Code...
 sumOfDifference.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 histogramDensity.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
   macros.vcxproj -> C:\Users\Tamara\Documents\GitHub\LiveImageandTimeSpectra\Debug\macros.lib

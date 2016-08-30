@@ -108,6 +108,17 @@ int main(int argc, char* argv[]) {
 	cout << "what is the directory? remember to add a backslash at the end" << endl;
 	cin >> fileLocation;
 
+	//User can select to only image (reconstrcut X,Y) for a certain timing window
+	/*
+	int minImageTime = 0;
+	int maxImageTime = 0;
+	string imagingTOFinput;
+	cout << "Would you like to only image a certain subset of TOF? (y/n)" << endl;
+	cin >> imagingTOFinput;
+	imagingTOFInfo 
+	if ();
+	*/
+
 	int filenumber = 0;
 	DIR* dir;
 	dirent* pdir;
@@ -125,7 +136,9 @@ int main(int argc, char* argv[]) {
 	TCanvas timesumsCanvas("Time sums canvas", "Time Sums");
 	TCanvas XYPosDet("Positive Detector", "XY Positions Positron Detector", canvasWidth, h);
 	TCanvas XYNegDet("Negative Detector", "XY Positions", canvasWidth, h);
-	TCanvas TimeSpectra("Time Spectrum", "Time Spectrum (abs)");
+	TCanvas *TimeSpectra = new TCanvas("Time Spectrum", "Time Spectrum (abs)");
+
+	
 	HistogramPair histTimeSpec;
 	TCanvas UVWNeglayersCanvas("UVW layers Canvas", "UVW Negative Detector", canvasWidth, h);
 	HistogramElecLayers UVWlayers;
@@ -139,10 +152,11 @@ int main(int argc, char* argv[]) {
 		XYpositions.electronDET->Draw("colz");
 		histTimeSpec.positive = new TH1D("hpos", "TimeSpectrum positive", 500, 0, 32000);
 		histTimeSpec.negative = new TH1D("hneg", "TimeSpectrum negative", 500, 0, 32000);
-		TimeSpectra.Divide(1, 2);
-		TimeSpectra.cd(1);
+		TimeSpectra->Divide(1, 2);
+		TimeSpectra->cd(1);
+		TimeSpectra->cd(1)->SetLogy();
 		histTimeSpec.positive->Draw();
-		TimeSpectra.cd(2);
+		TimeSpectra->cd(2);
 		histTimeSpec.negative->Draw();
 	}
 	else if (userDet == posDet) {
@@ -150,7 +164,7 @@ int main(int argc, char* argv[]) {
 		XYPosDet.cd();
 		XYpositions.positronDET->Draw("colz");
 		histTimeSpec.positive = new TH1D("hpos", "TimeSpectrum positive", 500, -2000, 32000);
-		TimeSpectra.cd();
+		TimeSpectra->cd();
 		histTimeSpec.positive->Draw();
 	}
 	else if (userDet == negDet) {
@@ -158,7 +172,7 @@ int main(int argc, char* argv[]) {
 		XYNegDet.cd();
 		XYpositions.electronDET->Draw("colz");
 		histTimeSpec.negative = new TH1D("hpos", "TimeSpectrum negative", 500, -2000, 32000);
-		TimeSpectra.cd();
+		TimeSpectra->cd();
 		histTimeSpec.negative->Draw();
 		UVWNeglayersCanvas.cd();
 		UVWlayers.UVlayers = new TH2D("electronDET", "UV layer", 400, -60, 60, 400, -60, 60);
@@ -436,6 +450,8 @@ int main(int argc, char* argv[]) {
 						XYNegDet.Update();
 						UVWNeglayersCanvas.Modified();
 						UVWNeglayersCanvas.Update();
+						//TimeSpectra->Modified();
+						//TimeSpectra->Update();
 						
 
 						//histogram detector images with 2D histogram
@@ -465,8 +481,8 @@ int main(int argc, char* argv[]) {
 	//}
 
 	closedir(dir);
-	TimeSpectra.Modified();
-	TimeSpectra.Update();
+	TimeSpectra->Modified();
+	TimeSpectra->Update();
 	rootapp->Draw();
 
 	rootapp->Run();
