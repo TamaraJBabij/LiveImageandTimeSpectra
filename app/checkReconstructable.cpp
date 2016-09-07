@@ -13,7 +13,7 @@
 //any pos or elec need to have atleast two layer hits
 //if true assign a bool to event
 
-void checkReconstructable(DataSet* data) {
+void checkReconstructable(DataSet* data, imagingTOFInfo imageUserInfo, double minImageTime, double maxImageTime) {
 	//checks has enough layer hits to reconstruct a position
 	for (Group* g : *data) {
 		for (Event* e : g->events) {
@@ -46,8 +46,15 @@ void checkReconstructable(DataSet* data) {
 					wCheck = 1;
 				}
 				if (uCheck + vCheck + wCheck >= 2) {
-					e->reconstructInfo = reconstructable;
-					//cout << e->reconstructInfo << endl;
+					if (imageUserInfo = imagesubsetTOF) {
+						if (e->mcp->time <= maxImageTime && e->mcp->time >= minImageTime) {
+							e->reconstructInfo = reconstructable;
+						}
+					}
+					else {
+						e->reconstructInfo = reconstructable;
+					}
+					
 				}
 				else {
 					e->reconstructInfo = notReconstructable;

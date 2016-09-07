@@ -35,7 +35,7 @@
 #include "HistUVWPositions.h"
 #include "histlayerSums.h"
 #include "TH1.h"
-
+#include "math.h"
 using namespace std;
 
 /*CALIBRATION PROGRAM FOR DETECTORS
@@ -109,15 +109,32 @@ int main(int argc, char* argv[]) {
 	cin >> fileLocation;
 
 	//User can select to only image (reconstrcut X,Y) for a certain timing window
-	/*
-	int minImageTime = 0;
-	int maxImageTime = 0;
+	// As set by user input max and min imagaing times (ns)
+	double minImageTime = 0;
+	double maxImageTime = 0;
 	string imagingTOFinput;
 	cout << "Would you like to only image a certain subset of TOF? (y/n)" << endl;
 	cin >> imagingTOFinput;
-	imagingTOFInfo 
-	if ();
-	*/
+	imagingTOFInfo imageUserInfo;
+		if (imagingTOFinput.compare("n") == 0) {
+			imageUserInfo = imageallTOF;
+			
+		}
+		else if (imagingTOFinput.compare("y") == 0) {
+			imageUserInfo = imagesubsetTOF;
+			//if yes for image subset, then ask user for subset timing range
+			cout << "what min image time(ns)?" << endl;
+			cin >> minImageTime;
+			cout << "what mac image time(ns)?" << endl;
+			cin >> maxImageTime;
+			//check that timing min << timing max
+			if (minImageTime > maxImageTime) {
+				cout << "Not a valid range" << endl;
+				exit(1);
+			}
+		}
+	
+
 
 	int filenumber = 0;
 	DIR* dir;
@@ -157,6 +174,7 @@ int main(int argc, char* argv[]) {
 		TimeSpectra->cd(1)->SetLogy();
 		histTimeSpec.positive->Draw();
 		TimeSpectra->cd(2);
+		TimeSpectra->cd(2)->SetLogy();
 		histTimeSpec.negative->Draw();
 	}
 	else if (userDet == posDet) {
@@ -223,7 +241,7 @@ int main(int argc, char* argv[]) {
 					//Associate hits into events, where event is a single particle/ion hit on the detector. Events are sorted by group
 					constructEvents(data);
 
-					plotTimeSpectraDS(data, userDet, &histTimeSpec);
+					//plotTimeSpectraDS(data, userDet, &histTimeSpec);
 
 					// construct timesum histograms on first file
 					if (firstFile) {
@@ -435,7 +453,7 @@ int main(int argc, char* argv[]) {
 						//check each particle hit has enough information to reconstruct X Y position
 						//not needed for ion
 						//does not need userDet check
-						checkReconstructable(data);
+						checkReconstructable(data, imageUserInfo, minImageTime, maxImageTime);
 
 						//does not need userDet
 						DataSet *reconData = sortReconData(data);
@@ -443,6 +461,24 @@ int main(int argc, char* argv[]) {
 						convertLayerPosition(reconData, Pitches, userDet);
 
 						convertCartesianPosition(reconData, userDet, &XYpositions, &UVWlayers);
+
+						for (Group* g : *data) {
+							for (Event* e : g->events) {
+								if (e->mcp->detector == pos && (userDet == posDet || userDet == bothDet)) {
+									double r = sqrt(pow(e->positive.x, 2.0) + pow(e->positive.y, 2.0));
+										if (r > 40.0) {
+											histTimeSpec.positive->Fill(e->mcp->time);
+										}
+									
+								}
+								else if (e->mcp->detector == neg && (userDet == negDet || userDet == bothDet)) {
+									histTimeSpec.negative->Fill(e->mcp->time);
+									
+								}
+
+								
+							}
+						}
 
 						XYPosDet.Modified();
 						XYPosDet.Update();
@@ -452,6 +488,8 @@ int main(int argc, char* argv[]) {
 						UVWNeglayersCanvas.Update();
 						//TimeSpectra->Modified();
 						//TimeSpectra->Update();
+
+
 						
 
 						//histogram detector images with 2D histogram

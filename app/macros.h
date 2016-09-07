@@ -26,7 +26,7 @@ void plotTimeSums(HistogramTimeSums timesums);
 void checkTimeSums(DataSet* data, FitSet fits, imagingDetectors userDet);
 void identifyAndTime(DataSet* data);
 void selectPosIonElec(DataSet* data);
-void checkReconstructable(DataSet* data);
+void checkReconstructable(DataSet* data, imagingTOFInfo imageUserInfo, double minImageTime, double maxImageTime);
 PitchPropSet calculatePitchProp();
 DataSet* sortReconData(DataSet* data);
 void convertLayerPosition(DataSet* reconData, PitchPropSet Pitches, imagingDetectors userDet, UVWpositionsHist *UVWPositions = NULL);
