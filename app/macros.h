@@ -44,3 +44,4 @@ void createMaskDataTree(imagingDetectors userDet, HistogramXY* XYpositions, Cali
 void checkDensity(DataSet* data, imagingDetectors userDet);
 void histogramDensity(DataSet* data, imagingDetectors userDet, TH1I hist);
 void calibrateFromSlope(DataSet* reconData, imagingDetectors userDet, layerDiffHist* diffHist);
+void plotTimeSpectraRadius(DataSet* data, imagingDetectors userDet, HistogramPair *histograms);

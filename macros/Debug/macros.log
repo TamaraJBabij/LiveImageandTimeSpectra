@@ -1,39 +1,4 @@
-﻿  checkReconstructable.cpp
-  Generating Code...
-  Compiling...
-  scanFiles.cpp
-  Generating Code...
-  Compiling...
-  sortReconData.cpp
-  selectPosIonElec.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  treeIO.cpp
-  sumOfDifference.cpp
-  positionsTreeToDataSet.cpp
-  plotTimeSums.cpp
-  plotTimeSpectraEvents.cpp
-  plotTimeSpectraDS.cpp
-  loadFromTreeExistingDataset.cpp
-  identifyAndTime.cpp
-  histogramXYPositions.cpp
-  histogramUVWPositions.cpp
-  histogramMaskLayers.cpp
-  histogramElectronLayers.cpp
-  histogramDifferenceElecLayers.cpp
-  histogramDensity.cpp
-  getCalibrationParameters.cpp
-  differenceOfLayers.cpp
-  createMaskDataTree.cpp
-  convertLayerPosition.cpp
-  convertCartesian.cpp
-  constructEvents.cpp
-  checkTimeSums.cpp
-  checkDensity.cpp
-  calibrateFromSlope.cpp
-  calculateTimeSums.cpp
-  calculatePitchProp.cpp
-  ReadWriteTree.cpp
+﻿  calculateTimeSums.cpp
 sumOfDifference.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 histogramDensity.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
   macros.vcxproj -> C:\Users\Tamara\Documents\GitHub\LiveImageandTimeSpectra\Debug\macros.lib

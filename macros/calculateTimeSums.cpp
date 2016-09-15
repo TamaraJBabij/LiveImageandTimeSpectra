@@ -17,7 +17,7 @@ using namespace std;
 HistogramTimeSums calculateTimeSums(DataSet* data, imagingDetectors userDet) {
 
 	HistogramTimeSums timesums;
-	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 120, 180);
+	timesums.layer_upos = new TH1D("upos", "TimeSum upos layer", 800, 140, 160);
 	timesums.layer_vpos = new TH1D("vpos", "TimeSum vpos layer", 800, 100, 200);
 	timesums.layer_wpos = new TH1D("wpos", "TimeSum wpos layer", 800, 120, 180);
 	timesums.layer_uneg = new TH1D("uneg", "TimeSum uneg layer", 800, 40, 180);

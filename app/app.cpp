@@ -241,7 +241,7 @@ int main(int argc, char* argv[]) {
 					//Associate hits into events, where event is a single particle/ion hit on the detector. Events are sorted by group
 					constructEvents(data);
 
-					//plotTimeSpectraDS(data, userDet, &histTimeSpec);
+					plotTimeSpectraDS(data, userDet, &histTimeSpec);
 
 					// construct timesum histograms on first file
 					if (firstFile) {
@@ -462,23 +462,10 @@ int main(int argc, char* argv[]) {
 
 						convertCartesianPosition(reconData, userDet, &XYpositions, &UVWlayers);
 
-						for (Group* g : *data) {
-							for (Event* e : g->events) {
-								if (e->mcp->detector == pos && (userDet == posDet || userDet == bothDet)) {
-									double r = sqrt(pow(e->positive.x, 2.0) + pow(e->positive.y, 2.0));
-										if (r > 40.0) {
-											histTimeSpec.positive->Fill(e->mcp->time);
-										}
-									
-								}
-								else if (e->mcp->detector == neg && (userDet == negDet || userDet == bothDet)) {
-									histTimeSpec.negative->Fill(e->mcp->time);
-									
-								}
-
-								
-							}
-						}
+						//plotTimeSpectraRadius(reconData, userDet, &histTimeSpec);
+						/*
+						
+						*/
 
 						XYPosDet.Modified();
 						XYPosDet.Update();

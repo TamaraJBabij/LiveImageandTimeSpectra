@@ -46,12 +46,12 @@ void checkReconstructable(DataSet* data, imagingTOFInfo imageUserInfo, double mi
 					wCheck = 1;
 				}
 				if (uCheck + vCheck + wCheck >= 2) {
-					if (imageUserInfo = imagesubsetTOF) {
+					if (imageUserInfo == imagesubsetTOF) {
 						if (e->mcp->time <= maxImageTime && e->mcp->time >= minImageTime) {
 							e->reconstructInfo = reconstructable;
 						}
 					}
-					else {
+					else if (imageUserInfo == imageallTOF){
 						e->reconstructInfo = reconstructable;
 					}
 					
