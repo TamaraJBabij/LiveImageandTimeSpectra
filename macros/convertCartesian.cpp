@@ -45,7 +45,7 @@ void convertCartesianPosition(DataSet* reconData, imagingDetectors userDet, Hist
 						//p.x_uw = e->U;
 						p.x_uw = - e->U;
 						//p.y_uw = (1.0 / sqrt(3))*(2 * e->W - e->U);
-						p.y_uw = (1.0 / sqrt(3))*(2 * e->W + e->U);
+						p.y_uw = (1.0 / sqrt(3))*(2 * e->W - e->U);
 						p.x += p.x_uw;
 						p.y += p.y_uw;
 						count++;

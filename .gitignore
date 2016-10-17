@@ -55,3 +55,5 @@ macros/Debug/sortReconData.obj
 *.root
 *.obj
 macros/Debug/macros.tlog/CL.command.1.tlog
+*.root
+*.obj

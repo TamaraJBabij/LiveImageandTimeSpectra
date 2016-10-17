@@ -38,15 +38,12 @@
 #include "math.h"
 using namespace std;
 
-/*CALIBRATION PROGRAM FOR DETECTORS
-* Note: data being parsed into program must be detectors with the calibration mask on
-* Two options for loading in data: 1. read, read in the raw data trees, process timesums for the first tree, then obtain X,Y images. 
-* After initial processing, this option also loads all layer timing info, u1, u2, v1..... etc into a tree that can be used for the second option.
-* 2. load, This option loads the tree produced in option 1, this allows for initial processing and loading to be skipped. Essentially data is loaded in
-* at the point where it is ready to be orocessed using the variables in need of calibration. Allows for quicker chanigng of variables and processing. 
+/*Detector XY Image, Timesums and Time of Flight spectra
+* Two options for processing data: 1. imag, read in the raw data trees, process timesums for the first tree, then obtain X,Y images. 
+* 2. time, produces timesums for the first tree present in selected folder 
 * This program does not select out for particles and will use all reconstructable hits to produce an image
 * Author: Tamara J Babij 
-* version control of software found on: https://github.com/TamaraJBabij/CalibrateDetectors/  */
+* version control of software found on: https://github.com/TamaraJBabij/LiveImageandTimeSpectra/ */
 
 int main(int argc, char* argv[]) {
 	//Initial function to set up the debug environment
@@ -54,27 +51,22 @@ int main(int argc, char* argv[]) {
 	//initialises root app
 	TApplication* rootapp = new TApplication("C:/Users/TamaraB/Documents/GitHub/CalibrateDetectors", &argc, argv);
 
-	/*
-	This program can be run for lower intensity beams, however maxes out memory above 60 trees
-	DataSet* data = scanFiles();
-	*/
-
-	/*Implementation of detinput allows for calibration of one detector at a time*/
+	/*Implementation of detinput allows for imaging either 1 detector or both detectors*/
 	string detinput;
 	cout << "what detectors do you want to image: neg, pos or both? " << endl;
 	cin >> detinput;
 	imagingDetectors userDet;
 	if (detinput.compare("pos") == 0) {
+		//Images only the positive (positron) detector
 		userDet = posDet;
-		//cout << "pos" << endl;
 	}
 	else if (detinput.compare("neg") == 0) {
+		//Images only the negative (electron) detector
 		userDet = negDet;
-		//cout << "neg" << endl;
 	}
 	else if (detinput.compare("both") == 0) {
+		//Images both the positive and negative detectors
 		userDet = bothDet;
-		//cout << "both" << endl;
 	}
 	else {
 		cout << "Input does not match a valid detector" << endl;
@@ -87,12 +79,15 @@ int main(int argc, char* argv[]) {
 	commandInfo userInfo;
 
 	if (operationInfo.compare("imag") == 0) {
+		//Produces only the detector images for selected detectors as defined by userDet
 		userInfo = imageInfo;
 	}
 	else if (operationInfo.compare("time") == 0) {
+		//Produces only timesums for first tree in the selected folder, for selected detectors as defined by userDet
 		userInfo = timesumInfo;
 	}
 	else if (operationInfo.compare("both") == 0) {
+		//Produces both timesums and detector images for selected detectors as defined by userDet
 		userInfo = bothInfo;
 	}
 	else {
@@ -100,6 +95,7 @@ int main(int argc, char* argv[]) {
 		exit(1);
 	}
 
+	//Data container for the histograms for the X,Y positions for the positive and negative particle reconstructions
 	HistogramXY XYpositions;
 
 	//scans folder created by the DAQ software and loads all tree ( .root) files into the dataset
@@ -110,8 +106,8 @@ int main(int argc, char* argv[]) {
 
 	//User can select to only image (reconstrcut X,Y) for a certain timing window
 	// As set by user input max and min imagaing times (ns)
-	double minImageTime = 0;
-	double maxImageTime = 0;
+	double minImageTime = 0.0;
+	double maxImageTime = 0.0;
 	string imagingTOFinput;
 	cout << "Would you like to only image a certain subset of TOF? (y/n)" << endl;
 	cin >> imagingTOFinput;
@@ -143,23 +139,38 @@ int main(int argc, char* argv[]) {
 	HistogramTimeSums timesums;
 	bool firstFile = true;
 	//delcare here as whatever curly brackets the variable is declared in it stays in (called scope)
+	//FitSet contains the the values of a Gaus being fit to the timesums histograms
+	//This allows for a check of valid timesums within some nsigma of the the gaussian peak
 	FitSet fits;
+	//Set Canvas hieght and width such that detector X,Y images canvas' are square
 	gStyle->SetPalette(1);
 	double_t canvasWidth = 800;
 	double_t h = 800;
+	//Data container for all pitch propagation values and layer offsets
 	PitchPropSet Pitches;
 	//calculate pitch propogation
 	Pitches = calculatePitchProp();
+	//Set up canvas to contain appropriate histograms
 	TCanvas timesumsCanvas("Time sums canvas", "Time Sums");
 	TCanvas XYPosDet("Positive Detector", "XY Positions Positron Detector", canvasWidth, h);
 	TCanvas XYNegDet("Negative Detector", "XY Positions", canvasWidth, h);
 	TCanvas *TimeSpectra = new TCanvas("Time Spectrum", "Time Spectrum (abs)");
-
-	
+	//TCanvas UVPosDet(" UV Positive Detector", "UV Positions Positron Detector", canvasWidth, h);
+	//TCanvas UWPosDet("UW Positive Detector", "UW Positions Positron Detector", canvasWidth, h);
+	//TCanvas VWPosDet("VW Positive Detector", "VW Positions Positron Detector", canvasWidth, h);
+	TCanvas UVWPoslayersCanvas("UVW Positive Detector", "UVW Positions Positron Detector", canvasWidth, h);
+	// Histogram container for the time spectrum produced for the negative and positive detectors
 	HistogramPair histTimeSpec;
 	TCanvas UVWNeglayersCanvas("UVW layers Canvas", "UVW Negative Detector", canvasWidth, h);
+	//Histogram container for the histograms of each of the layer X,Y reconstructions 
+	//Histograms the positron and electron layers, need to change name
 	HistogramElecLayers UVWlayers;
+	TCanvas UVPoslayersCanvas("UV layers Canvas", "UV Negative Detector", canvasWidth, h);
+	TCanvas UWPoslayersCanvas("UW layers Canvas", "UW Negative Detector", canvasWidth, h);
+	TCanvas VWPoslayersCanvas("VW layers Canvas", "VW Negative Detector", canvasWidth, h);
 
+
+	//Draw canvases based on userDet option
 	if (userDet == bothDet) {
 		XYpositions.positronDET = new TH2D("positronDET", "Positrons", 250, -60, 60, 250, -60, 60);
 		XYpositions.electronDET = new TH2D("electronDET", "Electrons", 250, -60, 60, 250, -60, 60);
@@ -176,6 +187,30 @@ int main(int argc, char* argv[]) {
 		TimeSpectra->cd(2);
 		TimeSpectra->cd(2)->SetLogy();
 		histTimeSpec.negative->Draw();
+		UVWlayers.UVPoslayers = new TH2D("Positive Detector", "UV layer", 400, -60, 60, 400, -60, 60);
+		UVWlayers.UWPoslayers = new TH2D("Positive Detector", "UW layer", 400, -60, 60, 400, -60, 60);
+		UVWlayers.VWPoslayers = new TH2D("Positive Detector", "VW layer", 400, -60, 60, 400, -60, 60);
+		UVWlayers.UVPoslayers->SetMarkerColor(kBlue);
+		UVWlayers.UVPoslayers->SetLineColor(kBlue);
+		UVWlayers.UWPoslayers->SetMarkerColor(kRed);
+		UVWlayers.UWPoslayers->SetLineColor(kRed);
+		UVWlayers.VWPoslayers->SetLineColor(kBlack);
+		UVWPoslayersCanvas.cd();
+		UVWlayers.UVPoslayers->Draw("hist");
+		UVWlayers.UWPoslayers->Draw("SameHist");
+		UVWlayers.VWPoslayers->Draw("SameHist");
+		UVWPoslayersCanvas.SetTitle("UVW Layers Combined; x (mm); y (mm)");
+		TLegend* PosLegend = new TLegend(0.1, 0.7, 0.3, 0.9, "Layers");
+		PosLegend->AddEntry(UVWlayers.UVPoslayers, "UV layer");
+		PosLegend->AddEntry(UVWlayers.UWPoslayers, "UW layer");
+		PosLegend->AddEntry(UVWlayers.VWPoslayers, "WV layer");
+		PosLegend->Draw();
+		UVPoslayersCanvas.cd();
+		UVWlayers.UVPoslayers->Draw();
+		UWPoslayersCanvas.cd();
+		UVWlayers.UWPoslayers->Draw(); 
+		VWPoslayersCanvas.cd();
+		UVWlayers.VWPoslayers->Draw();
 	}
 	else if (userDet == posDet) {
 		XYpositions.positronDET = new TH2D("positronDET", "Positrons", 400, -60, 60, 400, -60, 60);
@@ -212,10 +247,21 @@ int main(int argc, char* argv[]) {
 		elecLegend->Draw();
 		
 	}
-	//Histograms the positron and electron layers, need to change name
 	
-	// scans through all files in the folder
-	//  parses in all .root files (trees) created by DAQ software
+	//Want to crate a profile of the beam spot
+	TH1D* xinty = new TH1D("x integrated", "x integrated", 200, -60, 60);
+	TH1D* yintx = new TH1D("y integrated", "y integrated", 200, -60, 60);
+	TCanvas *BeamProfileCanvas = new TCanvas("Beam Profile", "Beam Profile (mm)");
+	BeamProfileCanvas->Divide(1, 2);
+	BeamProfileCanvas->cd(1);
+	xinty->Draw();
+	BeamProfileCanvas->cd(2);
+	yintx->Draw();
+
+
+
+	//Scans through all .root files in the folder given by the user
+	//parses in all .root files (trees) created by DAQ software
 	vector<char*> files;
 					
 		if (dir != NULL) {
@@ -224,7 +270,7 @@ int main(int argc, char* argv[]) {
 				if (strlen(fileName) > 5 && !strcmp(fileName + strlen(fileName) - 5, ".root")) {
 
 					DataSet* data = new DataSet();
-					//using string Folder Name acquire intiial tree
+					//using string Folder Name acquire intial tree
 					//Initial tree is given by ReMinumber with no underscore number
 					//cout << fileName << endl;
 					char str[256];
@@ -232,18 +278,23 @@ int main(int argc, char* argv[]) {
 					strcat(str, fileName);
 					//cout << str << endl;
 					cout << filenumber << endl;
+					//counter for number of files processed
 					filenumber++;
-
+					//Loads in the .root tree file
 					TFile* rawFile = TFile::Open(str);
 					TTree* rawTree = (TTree*)rawFile->Get("T");
+					//Takes raw data from tree and sorts it into a dataSet
+					//dataSet is the container for all raw and processed data
 					loadFromTreeDataSet(rawTree, data);
 					rawFile->Close();
 					//Associate hits into events, where event is a single particle/ion hit on the detector. Events are sorted by group
 					constructEvents(data);
-
+					//Plots any MCP hits time (in ns) for the positive and negative detectors
 					plotTimeSpectraDS(data, userDet, &histTimeSpec);
 
 					// construct timesum histograms on first file
+					//if electronics are not changed, the timesums should be consistent for the duration of each run. 
+					//Therefore only neccasery to acquire timesums for the first tree
 					if (firstFile) {
 						if (userInfo == timesumInfo || userInfo == bothInfo) {
 							timesums = calculateTimeSums(data, userDet);
@@ -462,6 +513,37 @@ int main(int argc, char* argv[]) {
 
 						convertCartesianPosition(reconData, userDet, &XYpositions, &UVWlayers);
 
+						//Profiles the beam by integrating along each axis
+						for (Group* g : *reconData) {
+							for (Event* e : g->events) {
+								if (e->mcp->detector == pos) {
+									xinty->Fill(e->positive.x);
+									yintx->Fill(e->positive.y);
+								}
+							}
+						}
+
+						//Want to image each layer
+
+						for (Group* g : *reconData) {
+							for (Event* e : g->events) {
+								UVWlayers.UVPoslayers->Fill(e->positive.x_uv, e->positive.y_uv);
+								UVWlayers.UWPoslayers->Fill(e->positive.x_uw, e->positive.y_uw);
+								UVWlayers.VWPoslayers->Fill(e->positive.x_vw, e->positive.y_vw);
+							}
+						}
+
+
+
+
+						/**
+						xinty->Fit("gaus");
+						yintx->Fit("gaus");
+						gStyle->SetOptFit(0011);
+						TF1 *fitxinty = xinty->GetFunction("gaus");
+						TF1 *fityintx = yintx->GetFunction("gaus");
+						*/
+
 						//plotTimeSpectraRadius(reconData, userDet, &histTimeSpec);
 						/*
 						
@@ -475,7 +557,10 @@ int main(int argc, char* argv[]) {
 						UVWNeglayersCanvas.Update();
 						//TimeSpectra->Modified();
 						//TimeSpectra->Update();
-
+						BeamProfileCanvas->Modified();
+						BeamProfileCanvas->Update();
+						UVWNeglayersCanvas.Modified();
+						UVWNeglayersCanvas.Update();
 
 						
 
